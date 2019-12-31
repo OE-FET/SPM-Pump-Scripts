@@ -1,0 +1,52 @@
+#-------------------------------------------------------
+# Electrical stability script
+#
+# Version: 0.1
+# Author: Dimitrios Simatos
+# Last updated: 2019-06-27
+#-------------------------------------------------------
+# Description
+#
+# This script is designed to measure transfer curves constantly, using the Keithley 2600 series source meter.
+#-------------------------------------------------------
+# Changes
+#
+# None
+#-------------------------------------------------------
+# Important points
+#
+#-------------------------------------------------------
+# Things to do before running the script
+#
+# Set time units to minutes.
+# Set filenames.
+#-------------------------------------------------------
+# Pumping cycles and execution time
+#
+# Every cycle consists of 10 minutes of measurements.
+# Execution time: 1 x 10 = 10 minutes
+# The first cycle has the first report valve command commented.
+#-------------------------------------------------------
+# Cycle 1: Transfer curve
+filename step_1_up-H2O_initial_
+transfer d 0 -1 -0.1 -1 -1 1
+wait-min 1 #wait 1 minute
+transfer d 0 -1 -0.1 -1 -1 1
+wait-min 1 #wait 1 minute
+transfer d 0 -1 -0.1 -1 -1 1
+wait-min 1 #wait 1 minute
+transfer d 0 -1 -0.1 -1 -1 1
+wait-min 1 #wait 1 minute
+transfer d 0 -1 -0.1 -1 -1 1
+wait-min 1 #wait 1 minute
+transfer d 0 -1 -0.1 -1 -1 1
+wait-min 1 #wait 1 minute
+transfer d 0 -1 -0.1 -1 -1 1
+wait-min 1 #wait 1 minute
+transfer d 0 -1 -0.1 -1 -1 1
+wait-min 1 #wait 1 minute
+transfer d 0 -1 -0.1 -1 -1 1
+wait-min 1 #wait 1 minute
+transfer d 0 -1 -0.1 -1 -1 1
+wait-min 1 #wait 1 minute
+transfer d 0 -1 -0.1 -1 -1 1
