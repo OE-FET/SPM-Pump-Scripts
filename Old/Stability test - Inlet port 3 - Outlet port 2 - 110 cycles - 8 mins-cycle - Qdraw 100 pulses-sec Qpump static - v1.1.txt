@@ -1,0 +1,4913 @@
+#-------------------------------------------------------
+# Stability script
+#
+# Version 1.1
+# Author: Dimitrios Simatos
+# Last updated: 2018-01-17
+#-------------------------------------------------------
+# Description
+#
+# This script is designed to pump a liquid from a single port into the flow cell.
+#-------------------------------------------------------
+# Changes
+#
+# Changed the voltage ranges for the transfer curves.
+#-------------------------------------------------------
+# Important points
+#
+# Never leave any liquid in the pump to dry after the experiments. If they dry, the residue may block the valve.
+# Always run the cleaning cycle after the experiments.
+# Use clockwise rotation when going up in valve port numbers and vice versa.
+#-------------------------------------------------------
+# Things to do before running the script
+#
+# Set time units to minutes.
+# Set filenames.
+# Replace the tubing, if necessary.
+#-------------------------------------------------------
+# Port connections
+#
+# Port 1: Waste
+# Port 2: Device
+# Port 3: DI water
+# Port 4: Nothing
+# Port 5: Nothing
+# Port 6: Nothing
+#-------------------------------------------------------
+# Pumping cycles and execution time
+#
+# There is only 1 step, with 110 cycles.
+# Execution time: 110 x 6.5 = 715 minutes = 12 hours
+# There are 110 pumping cycles, each one followed by 6.5 minutes of measurements.
+# Only the first cycle pumps DI water from port 3.
+# The first cycle has the initialization command uncommented and the first report valve command commented.
+#-------------------------------------------------------
+# Volume of liquid needed
+#
+# Volume of liquid needed per cycle: 1 ml
+# Total volume of liquid needed per script run:
+# 1 ml DI water
+#-------------------------------------------------------
+# Parameters
+#
+# Syringe size: 1 ml
+# Step resolution N = 0.01 mm
+# Drawing flow V = 100 pulses/second (2000 ul/min)
+# Pumping flow: static
+#-------------------------------------------------------
+# SPA settings
+itime s
+gaterangemode l
+drainrangemode l
+#-------------------------------------------------------
+# Pump initialization
+pump /1T #hard stop pump
+pump /1ZR #initialize pump
+#-------------------------------------------------------
+# Cycle 1: Pumping the liquid of port 3
+filename step_1_DI_H2O_initial_
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1V100R #choose speed: 100 steps/s (200 ul/min)
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1I3R #go to port 3, clockwise rotation
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
+wait 30000 #wait 30 seconds
+pump /1V10R #set speed to 10 steps/s (200 ul/min)
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1O2R #switch to port 2, counterclockwise rotation
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1A0R #go to absolute position 0 (= empty syringe)
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 2: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 3: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 4: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 5: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 6: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 7: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 8: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 9: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 10: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 11: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 12: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 13: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 14: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 15: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 16: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 17: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 18: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 19: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 20: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 21: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 22: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 23: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 24: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 25: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 26: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 27: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 28: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 29: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 30: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 31: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 32: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 33: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 34: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 35: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 36: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 37: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 38: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 39: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 40: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 41: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 42: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 43: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 44: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 45: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 46: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 47: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 48: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 49: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 50: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 51: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 52: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 53: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 54: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 55: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 56: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 57: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 58: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 59: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 60: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 61: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 62: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 63: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 64: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 65: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 66: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 67: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 68: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 69: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 70: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 71: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 72: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 73: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 74: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 75: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 76: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 77: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 78: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 79: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 80: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 81: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 82: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 83: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 84: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 85: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 86: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 87: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 88: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 89: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 90: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 91: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 92: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 93: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 94: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 95: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 96: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 97: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 98: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 99: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 100: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 101: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 102: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 103: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 104: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 105: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 106: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 107: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 108: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 109: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
+# Cycle 110: Pumping the liquid of port 3
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1 #wait 1 minute
+pump /1N0R #set step resolution: 0.01 mm
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be at 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait 1000 #wait 1 second
+pump /1Q #query pump
+wait 1000 #wait 1 second
+pump /1Q #query pump
+pump /1?6 #report valve position
+wait 1000 #wait 1 second
+wait 30000 #wait 30 seconds
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should have finished moving)
+#pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1?6 #report valve position
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+#pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position (the plunger should be moving to 0)
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+pump /1Q #query pump
+pump /1? #report absolute plunger position
+pump /1?6 #report valve position
+transfer d 0 -1 -0.1 -1 -1 0
+wait-min 1
+#-------------------------------------------------------
