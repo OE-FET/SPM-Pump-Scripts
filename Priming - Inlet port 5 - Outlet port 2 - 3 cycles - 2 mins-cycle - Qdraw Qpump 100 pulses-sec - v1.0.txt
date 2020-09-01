@@ -32,16 +32,16 @@
 # Port 2: Waste
 # port 3: Nothing
 # Port 4: Nothing
-# Port 5: IPA
+# Port 5: Saline solution
 # Port 6: Nothing
 #-------------------------------------------------------
 # Pumping cycles and execution time
 #
 # Execution time: 4 x 2 = 8 minutes
-# IPA must be the last to be pumped through the valve, to wash away residual ions.
+# Saline solution must be the last to be pumped through the valve, to wash away residual ions.
 # There are 3 pumping cycles. The first is a small, priming cycle, and the last two are large, cleaning and priming cycles.
 # Each small pumping cycle primes the tubing of each port.
-# The last two cycle prime the tubing of the port containing IPA (port 5) and also pump it through the valve, to clean the valve, the syringe, and prime the tubing of the device port (port 2).
+# The last two cycle prime the tubing of the port containing saline solution (port 5) and also pump it through the valve, to clean the valve, the syringe, and prime the tubing of the device port (port 2).
 # The device must be disconnected from the port during the priming procedure.
 #-------------------------------------------------------
 # Volume of liquid needed
@@ -49,7 +49,7 @@
 # Volume of liquid needed per small cycle: 200 ul
 # Volume of liquid needed per large cycle: 800 ul
 # Total volume of liquid needed per script run:
-# 200 + 2 x 800 = 1800 ul of IPA
+# 200 + 2 x 800 = 1800 ul of saline solution
 #-------------------------------------------------------
 # Parameters
 #
