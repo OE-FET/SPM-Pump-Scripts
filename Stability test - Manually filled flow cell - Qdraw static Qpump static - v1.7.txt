@@ -1,9 +1,9 @@
 #-------------------------------------------------------
 # Stability script
 #
-# Version: 1.8
+# Version: 1.7
 # Author: Dimitrios Simatos
-# Last updated: 2019-05-24
+# Last updated: 2020-02-09
 #-------------------------------------------------------
 # Description
 #
