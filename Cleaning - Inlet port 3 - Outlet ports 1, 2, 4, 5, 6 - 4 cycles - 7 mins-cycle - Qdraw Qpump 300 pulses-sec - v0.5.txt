@@ -22,7 +22,7 @@
 #-------------------------------------------------------
 # Things to do before running the script
 #
-# Set time units to minutes.
+# Remove all reservoirs, except the one in Port 3.
 # Set filenames.
 # Replace the tubing, if necessary.
 #-------------------------------------------------------
