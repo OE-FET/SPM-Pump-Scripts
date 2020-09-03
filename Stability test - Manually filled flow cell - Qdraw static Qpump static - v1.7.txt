@@ -3,7 +3,7 @@
 #
 # Version: 1.7
 # Author: Dimitrios Simatos
-# Last updated: 2020-02-09
+# Last updated: 2020-09-03
 #-------------------------------------------------------
 # Description
 #
@@ -14,16 +14,11 @@
 #-------------------------------------------------------
 # Important points
 #
-# Never leave any liquid in the pump to dry after the experiments. If they dry, the residue may block the valve.
-# Always run the cleaning cycle after the experiments.
-# Use clockwise rotation when going up in valve port numbers and vice versa.
-# Do not tighten the reservoir caps. It may lead to overpressure of air.
 #-------------------------------------------------------
 # Things to do before running the script
 #
 # Set time units to minutes.
 # Set filenames.
-# Replace the tubing, if necessary.
 #-------------------------------------------------------
 # Port connections
 #
