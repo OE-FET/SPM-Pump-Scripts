@@ -33,16 +33,13 @@
 #
 # There is only 1 step, with 110 cycles.
 # Execution time: 90 x 8 = 720 minutes = 12 hours
-# There are 90 pumping cycles, each one followed by 8 minutes of measurements.
+# There are 90 cycles, each one consisting of 8 minutes of measurements.
 													 
-# Only the first cycle pumps ultrapure water from port 3.
 # The first cycle has the initialization command uncommented and the first report valve command commented.
 #-------------------------------------------------------
 # Volume of liquid needed
 #
-# Volume of liquid needed per cycle: 1 ml
-# Total volume of liquid needed per script run:
-# 1 ml ultrapure water
+# Only enough liquid to fill the flow cell.
 #-------------------------------------------------------
 # Parameters
 #
