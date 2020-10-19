@@ -74,7 +74,7 @@
 # Since the script has to run 4 times, the cleaning lasts for: 4 x 28 = 112 minutes
 # Air must be the last to be pumped through the valve, to remove all liquids.
 # There are 4 pumping cycles. Each one draws a different liquid through port 3 and pumps it sequentially through ports 1,2,4,5,6.
-# During the sequential pumping, each port receives 200 ml of liquid (20% of the total syringe volume = 600 "plunger units")
+# During the sequential pumping, each port receives 200 ul of liquid (20% of the total syringe volume = 600 "plunger units")
 # The device must be disconnected from the port during the cleaning procedure.
 # All cycles are similar, except cycle 1 has the initialization command uncommented and the first report valve command commented.
 #-------------------------------------------------------
