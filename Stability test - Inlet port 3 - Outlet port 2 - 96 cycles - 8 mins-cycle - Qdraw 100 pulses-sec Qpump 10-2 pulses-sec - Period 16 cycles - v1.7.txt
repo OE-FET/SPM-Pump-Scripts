@@ -93,7 +93,7 @@ pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
 wait-min 1 #wait 1 minute
-pump /1V10R #set speed to 2 steps/s (200 ul/min)
+pump /1V10R #set speed to 10 steps/s (200 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
 #pump /1?6 #report valve position
