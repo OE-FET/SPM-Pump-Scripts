@@ -20,15 +20,6 @@
 # Set time units to minutes.
 # Set filenames.
 #-------------------------------------------------------
-# Port connections
-#
-# Port 1: Waste
-# Port 2: Device
-# Port 3: Ultrapure water
-# Port 4: Nothing
-# Port 5: Nothing
-# Port 6: Nothing
-#-------------------------------------------------------
 # Pumping cycles and execution time
 #
 # There is only 1 step, with 110 cycles.
@@ -41,21 +32,10 @@
 #
 # Only enough liquid to fill the flow cell.
 #-------------------------------------------------------
-# Parameters
-#
-# Syringe size: 1 ml
-# Step resolution N = 0.01 mm
-# Drawing flow: Static
-# Pumping flow: Static
-#-------------------------------------------------------
 # SPA settings
 itime l 0.04
 gaterangemode l
 drainrangemode l
-#-------------------------------------------------------
-# Pump initialization
-pump /1T #hard stop pump
-pump /1ZR #initialize pump
 #-------------------------------------------------------
 # Cycle 1: Measuring for 8 minutes
 filename step_1_up-H2O_initial_
