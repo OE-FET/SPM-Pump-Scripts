@@ -37,9 +37,9 @@
 #-------------------------------------------------------
 # Pumping cycles and execution time
 #
-# There are 7 steps, with 4 cycles per step.
-# Execution time: 28 x 30 = 840 minutes = 14 hours
-# There are 4 pumping cycles, each one followed by 30 minutes of measurements.
+# There are 7 steps in total.
+# Every step consists of 4 cycles: every cycle is a pumping cycle, followed by 30 minutes of measurements.
+# Execution time: 7 x 4 x 30 = 840 minutes = 14 hours
 # Cycles 1-4, 9-12, 17-20, 25-28 pump ultrapure water from port 3.
 # Cycles 5-8 pump phosphate buffer (pH=4.07 - 50 mM) from port 4.
 # Cycles 13-16 pump phosphate buffer (pH=3.04 - 50 mM) from port 5.
@@ -72,7 +72,7 @@ pump /1T #hard stop pump
 pump /1ZR #initialize pump
 #-------------------------------------------------------
 # Cycle 1: Pumping the liquid of port 3
-filename step_1_ultrapure_H2O_initial_
+filename step_1_up-H2O_initial_
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 #pump /1?6 #report valve position
@@ -653,7 +653,7 @@ transfer d 0 -1 -0.1 -1 -1 0
 wait-min 1 #wait 1 minute
 #-------------------------------------------------------
 # Cycle 5: Pumping the liquid of port 4
-filename step_2_phosphatebuffer_pH=4,07-50mM_initial_
+filename step_2_pbuffer-pH=4,07-50mM_initial_
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
@@ -1234,7 +1234,7 @@ transfer d 0 -1 -0.1 -1 -1 0
 wait-min 1 #wait 1 minute
 #-------------------------------------------------------
 # Cycle 9: Pumping the liquid of port 3
-filename step_3_ultrapure_H2O_initial_
+filename step_3_up-H2O_initial_
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
@@ -1815,7 +1815,7 @@ transfer d 0 -1 -0.1 -1 -1 0
 wait-min 1 #wait 1 minute
 #-------------------------------------------------------
 # Cycle 13: Pumping the liquid of port 5
-filename step_4_phosphatebuffer_pH=3,04-50mM_initial_
+filename step_4_pbuffer-pH=3,04-50mM_initial_
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
@@ -2396,7 +2396,7 @@ transfer d 0 -1 -0.1 -1 -1 0
 wait-min 1 #wait 1 minute
 #-------------------------------------------------------
 # Cycle 17: Pumping the liquid of port 3
-filename step_5_ultrapure_H2O_initial_
+filename step_5_up-H2O_initial_
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
@@ -2977,7 +2977,7 @@ transfer d 0 -1 -0.1 -1 -1 0
 wait-min 1 #wait 1 minute
 #-------------------------------------------------------
 # Cycle 21: Pumping the liquid of port 6
-filename step_6_phosphatebuffer_pH=2,04-50mM_initial_
+filename step_6_pbuffer-pH=2,04-50mM_initial_
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
@@ -3558,7 +3558,7 @@ transfer d 0 -1 -0.1 -1 -1 0
 wait-min 1 #wait 1 minute
 #-------------------------------------------------------
 # Cycle 25: Pumping the liquid of port 3
-filename step_7_ultrapure_H2O_initial_
+filename step_7_up-H2O_initial_
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position

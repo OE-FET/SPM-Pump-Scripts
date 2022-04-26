@@ -50,7 +50,7 @@
 #-------------------------------------------------------
 # Volume of liquid needed
 #
-# Volume of liquid needed per cycle: 1 ml
+# Volume of liquid needed per step: 1 ml
 # Total volume of liquid needed per script run:
 # 24 x 1 ml = 24 ml IPA
 #-------------------------------------------------------
