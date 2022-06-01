@@ -87,6 +87,7 @@ pump /1I1R #switch to port 1, clockwise rotation
 pump /1Q #query pump
 pump /1?6 #report valve position
 pump /1A100R #go to absolute position 100 (do not fully empty syringe)
+#pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
@@ -120,6 +121,7 @@ pump /1O1R #switch to port 1, counterclockwise rotation
 pump /1Q #query pump
 pump /1?6 #report valve position
 pump /1A100R #go to absolute position 100 (do not fully empty syringe)
+#pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1?6 #report valve position
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
@@ -154,6 +156,7 @@ pump /1O2R #switch to port 2, counterclockwise rotation
 pump /1Q #query pump
 pump /1?6 #report valve position
 pump /1A100R #go to absolute position 100 (do not fully empty syringe)
+#pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
@@ -187,6 +190,7 @@ pump /1O2R #switch to port 2, counterclockwise rotation
 pump /1Q #query pump
 pump /1?6 #report valve position
 pump /1A100R #go to absolute position 100 (do not fully empty syringe)
+#pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
