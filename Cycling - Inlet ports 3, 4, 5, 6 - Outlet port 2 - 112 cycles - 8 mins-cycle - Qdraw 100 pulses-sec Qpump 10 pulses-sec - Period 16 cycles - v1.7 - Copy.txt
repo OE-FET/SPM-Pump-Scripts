@@ -59,8 +59,7 @@
 # Syringe size: 1 ml
 # Step resolution N = 0.01 mm
 # Drawing flow V = 100 pulses/second (2000 ul/min)
-# Pumping flow: Initially 2 pulses/second (40 ul/min), then static.
-# NOTE: The first cycle has a pumping flow of 10 pulses/second (200 ul/min). This is done to increase the pressure inside the flow cell, and ensure that there are no air pockets during the initial filling.
+# Pumping flow: Initially 10 pulses/second (200 ul/min)., then static.
 #-------------------------------------------------------
 # SPA settings
 itime l 0.04
@@ -775,7 +774,7 @@ pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
 wait-min 1 #wait 1 minute
-pump /1V2R #set speed to 2 steps/s (40 ul/min)
+pump /1V10R #set speed to 10 steps/s (200 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
 #pump /1?6 #report valve position
@@ -1457,7 +1456,7 @@ pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
 wait-min 1 #wait 1 minute
-pump /1V2R #set speed to 2 steps/s (40 ul/min)
+pump /1V10R #set speed to 10 steps/s (200 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
 #pump /1?6 #report valve position
@@ -2139,7 +2138,7 @@ pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
 wait-min 1 #wait 1 minute
-pump /1V2R #set speed to 2 steps/s (40 ul/min)
+pump /1V10R #set speed to 10 steps/s (200 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
 #pump /1?6 #report valve position
@@ -2821,7 +2820,7 @@ pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
 wait-min 1 #wait 1 minute
-pump /1V2R #set speed to 2 steps/s (40 ul/min)
+pump /1V10R #set speed to 10 steps/s (200 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
 #pump /1?6 #report valve position
@@ -3503,7 +3502,7 @@ pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
 wait-min 1 #wait 1 minute
-pump /1V2R #set speed to 2 steps/s (40 ul/min)
+pump /1V10R #set speed to 10 steps/s (200 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
 #pump /1?6 #report valve position
@@ -4185,7 +4184,7 @@ pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
 wait-min 1 #wait 1 minute
-pump /1V2R #set speed to 2 steps/s (40 ul/min)
+pump /1V10R #set speed to 10 steps/s (200 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
 #pump /1?6 #report valve position
