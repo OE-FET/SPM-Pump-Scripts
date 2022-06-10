@@ -7,7 +7,7 @@
 #-------------------------------------------------------
 # Description
 #
-# This script is designed to pump a liquid from a single port into the flow cell.
+# This script is designed to pump a liquid from a single port into the QCM.
 #-------------------------------------------------------
 # Changes
 #
@@ -39,7 +39,7 @@
 #
 # There is only 1 step, with 90 cycles.
 # There are 90 pumping cycles, each one followed by 7 minutes of measurements.
-# Execution time: 1 x 90 x 7 = 630 minutes = 10.5 hours
+# Execution time: 1 x 90 x 6 = 540 minutes = 9 hours
 # All cycles pump DI water from port 3.
 # All cycles are similar, but the first cycle has the first report valve command commented.
 #-------------------------------------------------------
@@ -61,11 +61,11 @@ pump /1T #hard stop pump
 pump /1ZR #initialize pump
 #-------------------------------------------------------
 # Cycle 1: Pumping the liquid of port 3
-filename step_1_DI-H2O_initial_
+filename step_2_DI-H2O-vapor_initial_
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -79,7 +79,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -91,13 +91,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 2: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -111,7 +111,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -123,13 +123,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 3: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -143,7 +143,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -155,13 +155,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 4: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -175,7 +175,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -187,13 +187,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 5: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -207,7 +207,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -219,13 +219,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 6: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -239,7 +239,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -251,13 +251,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 7: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -271,7 +271,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -283,13 +283,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 8: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -303,7 +303,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -315,13 +315,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 9: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -335,7 +335,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -347,13 +347,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 10: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -367,7 +367,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -379,13 +379,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 11: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -399,7 +399,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -411,13 +411,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 12: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -431,7 +431,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -443,13 +443,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 13: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -463,7 +463,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -475,13 +475,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 14: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -495,7 +495,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -507,13 +507,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 15: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -527,7 +527,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -539,13 +539,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 16: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -559,7 +559,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -571,13 +571,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 17: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -591,7 +591,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -603,13 +603,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 18: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -623,7 +623,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -635,13 +635,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 19: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -655,7 +655,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -667,13 +667,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 20: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -687,7 +687,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -699,13 +699,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 21: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -719,7 +719,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -731,13 +731,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 22: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -751,7 +751,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -763,13 +763,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 23: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -783,7 +783,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -795,13 +795,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 24: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -815,7 +815,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -827,13 +827,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 25: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -847,7 +847,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -859,13 +859,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 26: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -879,7 +879,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -891,13 +891,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 27: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -911,7 +911,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -923,13 +923,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 28: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -943,7 +943,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -955,13 +955,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 29: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -975,7 +975,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -987,13 +987,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 30: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -1007,7 +1007,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -1019,13 +1019,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 31: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -1039,7 +1039,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -1051,13 +1051,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 32: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -1071,7 +1071,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -1083,13 +1083,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 33: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -1103,7 +1103,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -1115,13 +1115,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 34: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -1135,7 +1135,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -1147,13 +1147,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 35: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -1167,7 +1167,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -1179,13 +1179,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 36: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -1199,7 +1199,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -1211,13 +1211,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 37: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -1231,7 +1231,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -1243,13 +1243,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 38: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -1263,7 +1263,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -1275,13 +1275,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 39: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -1295,7 +1295,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -1307,13 +1307,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 40: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -1327,7 +1327,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -1339,13 +1339,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 41: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -1359,7 +1359,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -1371,13 +1371,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 42: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -1391,7 +1391,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -1403,13 +1403,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 43: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -1423,7 +1423,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -1435,13 +1435,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 44: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -1455,7 +1455,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -1467,13 +1467,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 45: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -1487,7 +1487,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -1499,13 +1499,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 46: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -1519,7 +1519,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -1531,13 +1531,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 47: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -1551,7 +1551,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -1563,13 +1563,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 48: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -1583,7 +1583,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -1595,13 +1595,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 49: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -1615,7 +1615,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -1627,13 +1627,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 50: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -1647,7 +1647,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -1659,13 +1659,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 51: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -1679,7 +1679,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -1691,13 +1691,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 52: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -1711,7 +1711,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -1723,13 +1723,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 53: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -1743,7 +1743,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -1755,13 +1755,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 54: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -1775,7 +1775,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -1787,13 +1787,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 55: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -1807,7 +1807,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -1819,13 +1819,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 56: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -1839,7 +1839,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -1851,13 +1851,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 57: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -1871,7 +1871,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -1883,13 +1883,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 58: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -1903,7 +1903,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -1915,13 +1915,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 59: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -1935,7 +1935,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -1947,13 +1947,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 60: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -1967,7 +1967,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -1979,13 +1979,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 61: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -1999,7 +1999,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -2011,13 +2011,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 62: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -2031,7 +2031,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -2043,13 +2043,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 63: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -2063,7 +2063,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -2075,13 +2075,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 64: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -2095,7 +2095,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -2107,13 +2107,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 65: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -2127,7 +2127,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -2139,13 +2139,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 66: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -2159,7 +2159,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -2171,13 +2171,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 67: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -2191,7 +2191,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -2203,13 +2203,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 68: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -2223,7 +2223,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -2235,13 +2235,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 69: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -2255,7 +2255,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -2267,13 +2267,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 70: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -2287,7 +2287,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -2299,13 +2299,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 71: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -2319,7 +2319,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -2331,13 +2331,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 72: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -2351,7 +2351,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -2363,13 +2363,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 73: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -2383,7 +2383,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -2395,13 +2395,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 74: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -2415,7 +2415,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -2427,13 +2427,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 75: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -2447,7 +2447,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -2459,13 +2459,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 76: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -2479,7 +2479,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -2491,13 +2491,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 77: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -2511,7 +2511,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -2523,13 +2523,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 78: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -2543,7 +2543,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -2555,13 +2555,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 79: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -2575,7 +2575,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -2587,13 +2587,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 80: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -2607,7 +2607,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -2619,13 +2619,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 81: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -2639,7 +2639,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -2651,13 +2651,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 82: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -2671,7 +2671,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -2683,13 +2683,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 83: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -2703,7 +2703,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -2715,13 +2715,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 84: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -2735,7 +2735,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -2747,13 +2747,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 85: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -2767,7 +2767,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -2779,13 +2779,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 86: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -2799,7 +2799,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -2811,13 +2811,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 87: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -2831,7 +2831,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -2843,13 +2843,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 88: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -2863,7 +2863,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -2875,13 +2875,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 89: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -2895,7 +2895,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -2907,13 +2907,13 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
 # Cycle 90: Pumping the liquid of port 3
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be at 0)
@@ -2927,7 +2927,7 @@ pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
 pump /1A3000R #go to absolute position 3000 (= draw 1 ml)
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
@@ -2939,5 +2939,5 @@ pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
+wait-min 2 #wait 2 minutes
 #-------------------------------------------------------
