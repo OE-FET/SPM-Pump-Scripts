@@ -66,6 +66,11 @@
 # 4. Repeat operation at least 2 times
 # • Replace the tubing, if necessary
 #-------------------------------------------------------
+# Cleaning protocol from the Knowles Group
+# 5x wash with DI water
+# 10x alternative washing with DI water and EtOH
+# 5x wash with DI water
+#-------------------------------------------------------
 # Pumping cycles and execution time
 #
 # Execution time for a single cycle: 7 x 10 sec = 70 seconds
