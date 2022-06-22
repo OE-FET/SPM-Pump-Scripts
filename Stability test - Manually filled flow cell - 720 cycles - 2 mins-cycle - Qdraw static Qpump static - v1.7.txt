@@ -25,7 +25,6 @@
 # There is only 1 step, with 360 cycles.
 # Execution time: 720 x 2 = 1440 minutes = 24 hours
 # There are 720 cycles, each one consisting of 2 minutes of measurements.
-													 
 # The first cycle has the initialization command uncommented and the first report valve command commented.
 #-------------------------------------------------------
 # Volume of liquid needed
