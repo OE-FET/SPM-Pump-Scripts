@@ -17,7 +17,7 @@
 #-------------------------------------------------------
 # Things to do before running the script
 #
-# Set time units to minutes.
+# Set time units to seconds.
 # Set filenames.
 #-------------------------------------------------------
 # Pumping cycles and execution time
