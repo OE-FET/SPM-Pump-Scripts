@@ -61,6 +61,7 @@
 # Pump initialization
 pump /1T #hard stop pump
 pump /1ZR #initialize pump
+wait-min 1 #wait 1 minute
 #-------------------------------------------------------
 # Cycle 1: Priming the tubing of port 5
 pump /1Q #query pump

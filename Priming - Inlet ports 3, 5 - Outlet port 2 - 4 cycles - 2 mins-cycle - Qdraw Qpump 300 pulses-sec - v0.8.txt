@@ -59,8 +59,12 @@
 # Drawing flow V = 300 pulses/second (6000 ul/min)
 # Pumping flow V = 300 pulses/second (6000 ul/min)
 #-------------------------------------------------------
-# Cycle 1: Priming the tubing of port 5
+# Pump initialization
+pump /1T #hard stop pump
 pump /1ZR #initialize pump
+wait-min 1 #wait 1 minute
+#-------------------------------------------------------
+# Cycle 1: Priming the tubing of port 5
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 #pump /1?6 #report valve position

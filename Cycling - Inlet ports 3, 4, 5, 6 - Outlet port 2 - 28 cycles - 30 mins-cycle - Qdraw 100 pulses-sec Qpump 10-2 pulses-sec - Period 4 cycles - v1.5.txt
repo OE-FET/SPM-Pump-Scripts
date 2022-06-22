@@ -71,6 +71,7 @@ drainrangemode l
 # Pump initialization
 pump /1T #hard stop pump
 pump /1ZR #initialize pump
+wait-min 1 #wait 1 minute
 #-------------------------------------------------------
 # Cycle 1: Pumping the liquid of port 3
 filename step_1_up-H2O_initial_
