@@ -1,7 +1,7 @@
 #-------------------------------------------------------
 # Baseline stabilization script
 #
-# Version: 1.5
+# Version: 0.1
 # Author: Dimitrios Simatos
 # Last updated: 2022-06-27
 #-------------------------------------------------------
