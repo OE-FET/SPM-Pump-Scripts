@@ -87,7 +87,6 @@
 # There are 5 pumping cycles. Each one draws a different liquid through port 3 and pumps it sequentially through ports 1,2,4,5,6.
 # During the sequential pumping, each port receives 1 ml of liquid (100% of the total syringe volume = 3000 "plunger units")
 # The device must be disconnected from the port during the cleaning procedure.
-# All cycles are similar, except cycle 1 has the initialization command uncommented and the first report valve command commented.
 #-------------------------------------------------------
 # Volume of liquid needed
 #
@@ -114,7 +113,7 @@ wait-min 1 #wait 1 minute
 # Fill the syringe
 pump /1Q #query pump
 pump /1? #report absolute plunger position
-#pump /1?6 #report valve position
+pump /1?6 #report valve position
 wait 10000 #wait 10 seconds
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump

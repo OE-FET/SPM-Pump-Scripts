@@ -16,7 +16,7 @@
 # Important points
 #
 # Never leave any liquid in the pump to dry after the experiments. If they dry, the residue may block the valve.
-# Always run the cleaning cycle after the experiments.
+# Always run the cleaning script after the experiments.
 # Use clockwise rotation when going up in valve port numbers and vice versa.
 # Do not tighten the reservoir caps. It may lead to overpressure of air.
 #-------------------------------------------------------
@@ -44,7 +44,6 @@
 # Cycles 5-8 pump phosphate buffer (pH=4.07 - 50 mM) from port 4.
 # Cycles 13-16 pump phosphate buffer (pH=3.04 - 50 mM) from port 5.
 # Cycles 21-24 pump phosphate buffer (pH=2.04 - 50 mM) from port 6.
-# Within a step all four cycles are similar, but the first cycle has the initialization command uncommented and the first report valve command commented.
 #-------------------------------------------------------
 # Volume of liquid needed
 #
@@ -77,7 +76,7 @@ wait-min 1 #wait 1 minute
 filename step_1_up-H2O_initial_
 pump /1Q #query pump
 pump /1? #report absolute plunger position
-#pump /1?6 #report valve position
+pump /1?6 #report valve position
 transfer d 0 -1 -0.1 -1 -1 0
 wait-min 1 #wait 1 minute
 pump /1N0R #set step resolution: 0.01 mm

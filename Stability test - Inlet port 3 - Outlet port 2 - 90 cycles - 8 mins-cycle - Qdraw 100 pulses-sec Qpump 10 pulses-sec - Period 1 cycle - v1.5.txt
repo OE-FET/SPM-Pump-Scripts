@@ -16,7 +16,7 @@
 # Important points
 #
 # Never leave any liquid in the pump to dry after the experiments. If they dry, the residue may block the valve.
-# Always run the cleaning cycle after the experiments.
+# Always run the cleaning script after the experiments.
 # Use clockwise rotation when going up in valve port numbers and vice versa.
 # Do not tighten the reservoir caps. It may lead to overpressure of air.
 #-------------------------------------------------------
@@ -41,7 +41,6 @@
 # There are 90 pumping cycles, each one followed by 7 minutes of measurements.
 # Execution time: 1 x 90 x 7 = 630 minutes = 10.5 hours
 # All cycles pump DI water from port 3.
-# All cycles are similar, but the first cycle has the first report valve command commented.
 #-------------------------------------------------------
 # Volume of liquid needed
 #
@@ -70,7 +69,7 @@ wait-min 1 #wait 1 minute
 filename step_1_DI-H2O_
 pump /1Q #query pump
 pump /1? #report absolute plunger position
-#pump /1?6 #report valve position
+pump /1?6 #report valve position
 transfer d 0 -1 -0.1 -1 -1 0
 wait-min 1 #wait 1 minute
 pump /1N0R #set step resolution: 0.01 mm
