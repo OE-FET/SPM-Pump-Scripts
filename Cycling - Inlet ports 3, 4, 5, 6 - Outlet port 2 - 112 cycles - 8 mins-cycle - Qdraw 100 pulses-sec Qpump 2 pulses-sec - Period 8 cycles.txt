@@ -46,7 +46,7 @@
 #-------------------------------------------------------
 # Volume of liquid needed
 #
-# Volume of liquid needed per step: 1 ml
+# Volume of liquid needed per step: 2 ml
 # Total volume of liquid needed per script run:
 # 8 x 1 = 8 ml ultrapure water
 # 2 x 1 = 2 ml lysozyme 0.1 g/L (100% Ultrapure water)
