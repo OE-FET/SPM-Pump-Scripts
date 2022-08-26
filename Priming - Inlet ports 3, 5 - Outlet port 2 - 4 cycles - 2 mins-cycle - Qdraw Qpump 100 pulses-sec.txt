@@ -1,9 +1,9 @@
 #-------------------------------------------------------
 # Priming script
 #
-# Version: 0.8
+# Version: 0.9
 # Author: Dimitrios Simatos
-# Last updated: 2019-01-21
+# Last updated: 2022-08-26
 #-------------------------------------------------------
 # Description
 #
@@ -55,9 +55,9 @@
 # Parameters
 #
 # Syringe size: 1 ml
-# Step resolution N = 0.01 mm
-# Drawing flow V = 100 pulses/second (2000 ul/min)
-# Pumping flow V = 100 pulses/second (2000 ul/min)
+# Step resolution: N = 0.01 mm
+# Drawing flow: V = 100 pulses/second (2000 ul/min)
+# Pumping flow: V = 100 pulses/second (2000 ul/min)
 #-------------------------------------------------------
 # Pump initialization
 pump /1T #hard stop pump

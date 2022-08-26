@@ -1,9 +1,9 @@
 #-------------------------------------------------------
 # Liquid cycling script
 #
-# Version: 0.1
+# Version: 0.2
 # Author: Dimitrios Simatos
-# Last updated: 2022-08-25
+# Last updated: 2022-08-26
 #-------------------------------------------------------
 # Description
 #
@@ -48,17 +48,17 @@
 #
 # Volume of liquid needed per step: 1 ml
 # Total volume of liquid needed per script run:
-# 3 x 1 = 4 ml ultrapure water
-# 1 x 1 = 1 ml lysozyme 0.1 g/L (100% Ultrapure water)
-# 1 x 1 = 1 ml lysozyme 1 g/L (100% Ultrapure water)
-# 1 x 1 = 1 ml lysozyme 10 g/L (100% Ultrapure water)
+# 8 x 1 = 8 ml ultrapure water
+# 2 x 1 = 2 ml lysozyme 0.1 g/L (100% Ultrapure water)
+# 2 x 1 = 2 ml lysozyme 1 g/L (100% Ultrapure water)
+# 2 x 1 = 2 ml lysozyme 10 g/L (100% Ultrapure water)
 #-------------------------------------------------------
 # Parameters
 #
 # Syringe size: 1 ml
-# Step resolution N = 0.01 mm
-# Drawing flow V = 100 pulses/second (2000 ul/min)
-# Pumping flow: V = 2 pulses/second (40 ul/min).
+# Step resolution: N = 0.01 mm
+# Drawing flow: V = 100 pulses/second (2000 ul/min)
+# Pumping flow: V = 2 pulses/second (40 ul/min)
 # NOTE: The first cycle has a pumping flow of 10 pulses/second (200 ul/min). This is done to increase the pressure inside the flow cell, and ensure that there are no air pockets during the initial filling.
 #-------------------------------------------------------
 # SPA settings

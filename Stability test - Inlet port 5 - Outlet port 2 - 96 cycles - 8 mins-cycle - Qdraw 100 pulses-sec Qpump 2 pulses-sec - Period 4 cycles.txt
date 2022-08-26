@@ -1,9 +1,9 @@
 #-------------------------------------------------------
 # Stability script
 #
-# Version: 1.7
+# Version: 1.8
 # Author: Dimitrios Simatos
-# Last updated: 2019-01-21
+# Last updated: 2022-08-26
 #-------------------------------------------------------
 # Description
 #
@@ -56,9 +56,9 @@
 # Parameters
 #
 # Syringe size: 1 ml
-# Step resolution N = 0.01 mm
-# Drawing flow V = 100 pulses/second (2000 ul/min)
-# Pumping flow: Initially 2 pulses/second (40 ul/min), then static.
+# Step resolution: N = 0.01 mm
+# Drawing flow: V = 100 pulses/second (2000 ul/min)
+# Pumping flow: V = 2 pulses/second (40 ul/min)
 #-------------------------------------------------------
 # SPA settings
 itime l 0.04

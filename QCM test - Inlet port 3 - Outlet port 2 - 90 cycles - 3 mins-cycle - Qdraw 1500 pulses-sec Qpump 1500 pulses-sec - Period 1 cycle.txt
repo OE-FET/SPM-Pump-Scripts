@@ -1,9 +1,9 @@
 #-------------------------------------------------------
 # QCM vapor pumping script
 #
-# Version: 0.1
+# Version: 0.2
 # Author: Dimitrios Simatos
-# Last updated: 2022-05-31
+# Last updated: 2022-08-26
 #-------------------------------------------------------
 # Description
 #
@@ -51,9 +51,9 @@
 # Parameters
 #
 # Syringe size: 1 ml
-# Step resolution N = 0.01 mm
-# Drawing flow V = 1500 pulses/second (30000 ul/min)
-# Pumping flow V = 1500 pulses/second (30000 ul/min)
+# Step resolution: N = 0.01 mm
+# Drawing flow: V = 1500 pulses/second (30000 ul/min)
+# Pumping flow: V = 1500 pulses/second (30000 ul/min)
 #-------------------------------------------------------
 # Pump initialization
 pump /1T #hard stop pump

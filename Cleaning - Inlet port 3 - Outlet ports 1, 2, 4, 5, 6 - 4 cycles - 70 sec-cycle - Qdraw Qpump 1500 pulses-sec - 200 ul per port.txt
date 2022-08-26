@@ -1,9 +1,9 @@
 #-------------------------------------------------------
 # SPM pump cleaning script
 #
-# Version: 0.5
+# Version: 0.6
 # Author: Dimitrios Simatos
-# Last updated: 2022-06-22
+# Last updated: 2022-08-26
 #-------------------------------------------------------
 # Description
 #
@@ -100,9 +100,9 @@
 # Parameters
 #
 # Syringe size: 1 ml
-# Step resolution N = 0.01 mm
-# Drawing flow V = 1500 pulses/second (30000 ul/min)
-# Pumping flow V = 1500 pulses/second (30000 ul/min)
+# Step resolution: N = 0.01 mm
+# Drawing flow: V = 1500 pulses/second (30000 ul/min)
+# Pumping flow: V = 1500 pulses/second (30000 ul/min)
 #-------------------------------------------------------
 # Pump initialization
 pump /1T #hard stop pump

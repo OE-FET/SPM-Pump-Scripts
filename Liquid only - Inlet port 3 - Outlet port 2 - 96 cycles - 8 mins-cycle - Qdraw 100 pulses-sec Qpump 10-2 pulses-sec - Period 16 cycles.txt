@@ -1,9 +1,9 @@
 #-------------------------------------------------------
 # Stability script
 #
-# Version: 1.7
+# Version: 1.8
 # Author: Dimitrios Simatos
-# Last updated: 2020-12-18
+# Last updated: 2022-08-26
 #-------------------------------------------------------
 # Description
 #
@@ -57,9 +57,9 @@
 # Parameters
 #
 # Syringe size: 1 ml
-# Step resolution N = 0.01 mm
-# Drawing flow V = 100 pulses/second (2000 ul/min)
-# Pumping flow: Initially 2 pulses/second (40 ul/min), then static.
+# Step resolution: N = 0.01 mm
+# Drawing flow: V = 100 pulses/second (2000 ul/min)
+# Pumping flow: V = 2 pulses/second (40 ul/min)
 # NOTE: The first cycle has a pumping flow of 10 pulses/second (200 ul/min). This is done to increase the pressure inside the flow cell, and ensure that there are no air pockets during the initial filling.
 #-------------------------------------------------------
 # SPA settings

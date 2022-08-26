@@ -1,9 +1,9 @@
 #-------------------------------------------------------
 # Priming script
 #
-# Version: 0.9
+# Version: 1.0
 # Author: Dimitrios Simatos
-# Last updated: 2019-01-21
+# Last updated: 2022-08-26
 #-------------------------------------------------------
 # Description
 #
@@ -31,9 +31,9 @@
 # Port 1: Waste
 # Port 2: Waste
 # Port 3: Ultrapure water
-# Port 4: Phosphate buffer (pH=4.07 - 50 mM)
-# Port 5: Phosphate buffer (pH=3.04 - 50 mM)
-# Port 6: Phosphate buffer (pH=2.04 - 50 mM)
+# Port 4: Lysozyme 0.1 g/L (100% Ultrapure water)
+# Port 5: Lysozyme 1 g/L (100% Ultrapure water)
+# Port 6: Lysozyme 10 g/L (100% Ultrapure water)
 #-------------------------------------------------------
 # Pumping cycles and execution time
 #
@@ -49,17 +49,17 @@
 # Volume of liquid needed per small cycle: 200 ul
 # Volume of liquid needed per large cycle: 800 ul
 # Total volume of liquid needed per script run:
-# 200 ul of phosphate buffer (pH=4.07 - 50 mM)
-# 200 ul of phosphate buffer (pH=3.04 - 50 mM)
-# 200 ul of phosphate buffer (pH=2.04 - 50 mM)
+# 200 ul of lysozyme 0.1 g/L (100% Ultrapure water)
+# 200 ul of lysozyme 1 g/L (100% Ultrapure water)
+# 200 ul of lysozyme 10 g/L (100% Ultrapure water)
 # 600 + 2 x 800 = 1800 ul of ultrapure water
 #-------------------------------------------------------
 # Parameters
 #
 # Syringe size: 1 ml
-# Step resolution N = 0.01 mm
-# Drawing flow V = 100 pulses/second (2000 ul/min)
-# Pumping flow V = 100 pulses/second (2000 ul/min)
+# Step resolution: N = 0.01 mm
+# Drawing flow: V = 100 pulses/second (2000 ul/min)
+# Pumping flow: V = 100 pulses/second (2000 ul/min)
 #-------------------------------------------------------
 # Pump initialization
 pump /1T #hard stop pump
