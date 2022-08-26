@@ -1,9 +1,9 @@
 #-------------------------------------------------------
 # SPM pump cleaning script x 10
 #
-# Version: 0.6
+# Version: 0.7
 # Author: Dimitrios Simatos
-# Last updated: 2022-08-26
+# Last updated: 2022-08-27
 #-------------------------------------------------------
 # Description
 #
@@ -46,6 +46,8 @@
 # 1st run: 5x wash with DI water
 # 2nd run: 10x alternative washing with DI water and EtOH
 # 3rd run: 5x wash with DI water
+#
+# NOTE: Ethanol gets absorbed by the non HPLC-grade PTFE membrane, unless it is washed away immediately.
 #-------------------------------------------------------
 # Cleaning protocol for the SPM OEM pump (from the manual)
 #
