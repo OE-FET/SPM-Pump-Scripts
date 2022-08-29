@@ -1,5 +1,5 @@
 #-------------------------------------------------------
-# SPM pump cleaning script x5
+# SPM pump cleaning script x5, Ports 1,2
 #
 # Version: 0.1
 # Author: Dimitrios Simatos
