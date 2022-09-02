@@ -1,9 +1,9 @@
 #-------------------------------------------------------
 # SPM pump cleaning script x5, Ports 1,2
 #
-# Version: 0.1
+# Version: 0.2
 # Author: Dimitrios Simatos
-# Last updated: 2022-08-29
+# Last updated: 2022-09-02
 #-------------------------------------------------------
 # Description
 #
@@ -13,7 +13,7 @@
 #-------------------------------------------------------
 # Changes
 #
-# Placed initialization and hard stop commands in the beginning.
+# Fixed cycles 17 and 18.
 #-------------------------------------------------------
 # Important points
 #
@@ -637,12 +637,11 @@ pump /1? #report absolute plunger position (the plunger should be moving to 0)
 wait 10000 #wait 10 seconds
 pump /1? #report absolute plunger position (the plunger should have finished moving)
 #-------------------------------------------------------
-# Cycle 17 (Clean port 5)
+# Cycle 17 (Clean port 1)
 # Fill the syringe
-#pump /1ZR #initialize pump
 pump /1Q #query pump
 pump /1? #report absolute plunger position
-pump /1?6 #report valve position
+#pump /1?6 #report valve position
 wait 10000 #wait 10 seconds
 pump /1N0R #set step resolution: 0.01 mm
 pump /1Q #query pump
@@ -652,7 +651,7 @@ wait 1000 #wait 1 second
 pump /1V1500R #choose speed: 1500 steps/s (30000 ul/min)
 pump /1Q #query pump
 wait 1000 #wait 1 second
-pump /1O3R #go to port 3, counterclockwise rotation
+pump /1I3R #go to port 3, clockwise rotation
 pump /1Q #query pump
 pump /1?6 #report valve position
 wait 1000 #wait 1 second
@@ -661,8 +660,8 @@ wait 10000 #wait 10 seconds
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
 #pump /1?6 #report valve position
-# Clean port 5
-pump /1I5R #switch to port 5, clockwise rotation
+# Clean port 1
+pump /1O1R #switch to port 1, counterclockwise rotation
 pump /1Q #query pump
 pump /1?6 #report valve position
 pump /1A0R #go to absolute position 0 (= pump 200 ul)
@@ -671,9 +670,8 @@ pump /1? #report absolute plunger position (the plunger should be moving to 0)
 wait 10000 #wait 10 seconds
 pump /1? #report absolute plunger position (the plunger should have finished moving)
 #-------------------------------------------------------
-# Cycle 18 (Clean port 6)
+# Cycle 18 (Clean port 2)
 # Fill the syringe
-#pump /1ZR #initialize pump
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
@@ -695,8 +693,8 @@ wait 10000 #wait 10 seconds
 pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should have finished moving)
 #pump /1?6 #report valve position
-# Clean port 6
-pump /1I6R #switch to port 6, clockwise rotation
+# Clean port 2
+pump /1I2R #switch to port 2, clockwise rotation
 pump /1Q #query pump
 pump /1?6 #report valve position
 pump /1A0R #go to absolute position 0 (= pump 200 ul)
