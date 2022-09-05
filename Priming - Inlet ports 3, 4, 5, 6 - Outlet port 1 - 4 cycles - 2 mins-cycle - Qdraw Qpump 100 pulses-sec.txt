@@ -1,17 +1,19 @@
 #-------------------------------------------------------
 # Priming script
 #
-# Version: 1.1
+# Version: 0.1
 # Author: Dimitrios Simatos
 # Last updated: 2022-09-05
 #-------------------------------------------------------
 # Description
 #
-# This script is designed to prime inlet ports 3, 4, 5, 6, and outlet port 2.
+# This script is designed to prime inlet ports 3, 4, 5, 6, but not outlet port 2.
+# It is meant to be used when a device is already connected and the tubing of port 2 is already primed. 
+# Using this script I can change the liquids of ports 3, 4, 5, 6 and re-prime the small tubings without disconnecting the device.
 #-------------------------------------------------------
 # Changes
 #
-# Fixed typo.
+# Created script.
 #-------------------------------------------------------
 # Important points
 #
@@ -52,7 +54,7 @@
 # 200 ul of lysozyme 0.1 g/L (100% Ultrapure water)
 # 200 ul of lysozyme 1 g/L (100% Ultrapure water)
 # 200 ul of lysozyme 10 g/L (100% Ultrapure water)
-# 200 + 2 x 800 = 1800 ul of ultrapure water
+# 200 ul of ultrapure water
 #-------------------------------------------------------
 # Parameters
 #
@@ -197,72 +199,6 @@ pump /1A100R #go to absolute position 100 (do not fully empty syringe)
 #pump /1A0R #go to absolute position 0 (= empty syringe)
 pump /1Q #query pump
 pump /1?6 #report valve position
-pump /1? #report absolute plunger position (the plunger should be moving to 0)
-#pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
-#-------------------------------------------------------
-# Cycle 5: Cleaning the syringe and the tubing of port 2 (1/2)
-pump /1Q #query pump
-pump /1? #report absolute plunger position
-pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
-pump /1N0R #set step resolution: 0.01 mm
-pump /1Q #query pump
-pump /1? #report absolute plunger position (the plunger should be at 0)
-pump /1?6 #report valve position
-wait 1000 #wait 1 second
-pump /1V100R #choose speed: 100 steps/s (2000 ul/min)
-pump /1Q #query pump
-wait 1000 #wait 1 second
-pump /1I3R #go to port 3, clockwise rotation
-pump /1Q #query pump
-pump /1?6 #report valve position
-wait 1000 #wait 1 second
-pump /1A2400R #go to absolute position 2400 (= draw 800 ul)
-# The position of the plunger depends on the volume of the tubing. The syringe must draw enough liquid to fill the tubing.
-wait 30000 #wait 30 seconds
-pump /1Q #query pump
-pump /1? #report absolute plunger position (the plunger should have finished moving)
-#pump /1?6 #report valve position
-pump /1O2R #switch to port 2, counterclockwise rotation
-pump /1Q #query pump
-pump /1?6 #report valve position
-pump /1A100R #go to absolute position 100 (do not fully empty syringe)
-#pump /1A0R #go to absolute position 0 (= empty syringe)
-pump /1Q #query pump
-pump /1? #report absolute plunger position (the plunger should be moving to 0)
-#pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
-#-------------------------------------------------------
-# Cycle 6: Cleaning the syringe and the tubing of port 2 (2/2)
-pump /1Q #query pump
-pump /1? #report absolute plunger position
-pump /1?6 #report valve position
-wait-min 1 #wait 1 minute
-pump /1N0R #set step resolution: 0.01 mm
-pump /1Q #query pump
-pump /1? #report absolute plunger position (the plunger should be at 0)
-pump /1?6 #report valve position
-wait 1000 #wait 1 second
-pump /1V100R #choose speed: 100 steps/s (2000 ul/min)
-pump /1Q #query pump
-wait 1000 #wait 1 second
-pump /1I3R #go to port 3, clockwise rotation
-pump /1Q #query pump
-pump /1?6 #report valve position
-wait 1000 #wait 1 second
-pump /1A2400R #go to absolute position 2400 (= draw 800 ul)
-# The position of the plunger depends on the volume of the tubing. The syringe must draw enough liquid to fill the tubing.
-wait 30000 #wait 30 seconds
-pump /1Q #query pump
-pump /1? #report absolute plunger position (the plunger should have finished moving)
-#pump /1?6 #report valve position
-pump /1O2R #switch to port 2, counterclockwise rotation
-pump /1Q #query pump
-pump /1?6 #report valve position
-pump /1A100R #go to absolute position 100 (do not fully empty syringe)
-#pump /1A0R #go to absolute position 0 (= empty syringe)
-pump /1Q #query pump
 pump /1? #report absolute plunger position (the plunger should be moving to 0)
 #pump /1?6 #report valve position
 wait-min 1 #wait 1 minute
