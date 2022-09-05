@@ -1,7 +1,7 @@
 #-------------------------------------------------------
 # Priming script
 #
-# Version: 0.2
+# Version: 0.3
 # Author: Dimitrios Simatos
 # Last updated: 2022-09-05
 #-------------------------------------------------------
@@ -13,7 +13,7 @@
 #-------------------------------------------------------
 # Changes
 #
-# Added washing steps for the syringe.
+# Fixed Volume of liquid needed and execution time.
 #-------------------------------------------------------
 # Important points
 #
@@ -43,8 +43,8 @@
 # Ultrapure water must be the last to be pumped through the valve, to wash away residual ions.
 # There are six pumping cycles. The first four are small, priming cycles, and the last two are large, cleaning and priming cycles.
 # Each small pumping cycle primes the tubing of each port.
-# The last two cycles prime the tubing of the port containing ultrapure water (port 3) and also pump it through the valve, to clean the valve, the syringe, and prime the tubing of the device port (port 2).
-# The device must be disconnected from the port during the priming procedure.
+# The last two cycles prime the tubing of the port containing ultrapure water (port 3) and also pump it through the valve, to clean the valve and the syringe. The waste is led to port 1.
+# The device can be connected to port during 2 the priming procedure.
 #-------------------------------------------------------
 # Volume of liquid needed
 #
@@ -54,7 +54,7 @@
 # 200 ul of lysozyme 0.1 g/L (100% Ultrapure water)
 # 200 ul of lysozyme 1 g/L (100% Ultrapure water)
 # 200 ul of lysozyme 10 g/L (100% Ultrapure water)
-# 200 ul of ultrapure water
+# 200 + 2 x 800 = 1800 ul of ultrapure water
 #-------------------------------------------------------
 # Parameters
 #
