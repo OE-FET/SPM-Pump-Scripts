@@ -1,17 +1,18 @@
 #-------------------------------------------------------
 # Liquid cycling script
 #
-# Version: 0.1
+# Version: 0.2
 # Author: Dimitrios Simatos
 # Last updated: 2022-09-07
 #-------------------------------------------------------
 # Description
 #
 # This script is designed to perform a cycling experiment between four liquids.
+# Port sequence: 3, 4, 5, 6
 #-------------------------------------------------------
 # Changes
 #
-# Created the script.
+# Corrected errors.
 #-------------------------------------------------------
 # Important points
 #
@@ -42,14 +43,14 @@
 # then another pumping cycle and another 1 hour of measurements (6 cycles), then another pumping cycle and another 1 hour of measurements (6 cycles).
 # Every 70 minutes (7 cycles) new liquid is flushed inside the flow cell.
 # The syringe takes 30 minutes to empty.
-# Every cycle is 10 minutes long. The total number of cycles is 196.
+# Every cycle is 10 minutes long. The total number of cycles is 112.
 # Execution time: 4 x 28 x 10 = 1120 minutes = 18.6 hours
 #-------------------------------------------------------
 # Volume of liquid needed
 #
 # Volume of liquid needed per step: 4 ml
 # Total volume of liquid needed per script run: (volume/step * steps in which the liquid is injected)
-# 4 ml x 4 = 16 ml ultrapure water
+# 4 ml x 1 = 4 ml ultrapure water
 # 4 ml x 1 = 4 ml lysozyme 0.1 g/L (100% Ultrapure water)
 # 4 ml x 1 = 4 ml lysozyme 1 g/L (100% Ultrapure water)
 # 4 ml x 1 = 4 ml lysozyme 10 g/L (100% Ultrapure water)
