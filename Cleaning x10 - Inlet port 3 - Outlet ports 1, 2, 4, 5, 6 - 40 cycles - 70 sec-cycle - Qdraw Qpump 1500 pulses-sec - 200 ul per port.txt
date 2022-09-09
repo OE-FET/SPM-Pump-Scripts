@@ -1,17 +1,19 @@
 #-------------------------------------------------------
 # SPM pump cleaning script x 10
 #
-# Version: 0.7
+# Version: 0.8
 # Author: Dimitrios Simatos
-# Last updated: 2022-08-27
+# Last updated: 2022-09-08
 #-------------------------------------------------------
 # Description
 #
 # This script is designed to run the cleaning sequence of the SPM OEM pump ten times.
+#
+# Input port sequence: 3
 #-------------------------------------------------------
 # Changes
 #
-# Placed initialization and hard stop commands in the beginning.
+# Added input port sequence and updated the volume of liquid needed.
 #-------------------------------------------------------
 # Important points
 #
@@ -92,7 +94,7 @@
 # Volume of liquid needed
 #
 # Volume of liquid needed per cycle: 1 ml
-# Total volume of liquid needed per script run: 40 x 1 = 40 ml
+# Total volume of liquid needed per script run (volume/step * steps in which the liquid is injected): 40 ml x 1 = 40 ml
 # Since the script has to run 4 times, the first 3 with different liquids, I need:
 # 40 ml of 1% v/v solution of sodium hypochlorite in ultrapure water
 # 40 ml of 0.1% w/v solution of sodium dodecyl sulfate in ultrapure water

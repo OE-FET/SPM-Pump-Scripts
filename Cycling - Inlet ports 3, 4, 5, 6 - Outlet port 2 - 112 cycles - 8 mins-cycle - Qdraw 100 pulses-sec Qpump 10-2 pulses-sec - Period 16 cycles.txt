@@ -1,17 +1,22 @@
 #-------------------------------------------------------
 # Liquid cycling script
 #
-# Version: 1.6
+# Version: 1.7
 # Author: Dimitrios Simatos
-# Last updated: 2022-08-26
+# Last updated: 2022-09-08
 #-------------------------------------------------------
 # Description
 #
 # This script is designed to perform a cycling experiment between four liquids.
+# If sensing proteins, perform two additional steps:
+#  - Saturate the tubes for 1-2 hours with a highly concentrated protein solution.
+#  - Measure consecutive transfer curves for 4 hours, to allow the device to charge and the baseline to stabilize to its maximum value.
+#
+# Input port sequence: 3, 4, 3, 5, 3, 6, 3
 #-------------------------------------------------------
 # Changes
 #
-# Removed 1A0R step. Syringe should not fully empty as air is injected.
+# Added input port sequence and updated the volume of liquid needed.
 #-------------------------------------------------------
 # Important points
 #
@@ -22,6 +27,7 @@
 #-------------------------------------------------------
 # Things to do before running the script
 #
+# If sensing proteins, saturate the tubes with a highly concentrated protein solution.
 # Set time units to minutes.
 # Set filenames.
 # Replace the tubing, if necessary.
@@ -47,11 +53,11 @@
 # Volume of liquid needed
 #
 # Volume of liquid needed per step: 1 ml
-# Total volume of liquid needed per script run:
-# 3 x 1 = 4 ml ultrapure water
-# 1 x 1 = 1 ml phosphate buffer (pH=2.04 - 50 mM)
-# 1 x 1 = 1 ml phosphate buffer (pH=3.04 - 50 mM)
-# 1 x 1 = 1 ml phosphate buffer (pH=4.07 - 50 mM)
+# Total volume of liquid needed per script run (volume/step * steps in which the liquid is injected):
+# 4 ml x 1 = 4 ml ultrapure water
+# 1 ml x 1 = 1 ml phosphate buffer (pH=2.04 - 50 mM)
+# 1 ml x 1 = 1 ml phosphate buffer (pH=3.04 - 50 mM)
+# 1 ml x 1 = 1 ml phosphate buffer (pH=4.07 - 50 mM)
 #-------------------------------------------------------
 # Parameters
 #

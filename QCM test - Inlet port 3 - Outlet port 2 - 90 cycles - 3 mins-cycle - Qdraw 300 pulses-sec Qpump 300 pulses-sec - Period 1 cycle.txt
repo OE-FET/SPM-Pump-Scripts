@@ -1,17 +1,22 @@
 #-------------------------------------------------------
 # QCM vapor pumping script
 #
-# Version: 0.1
+# Version: 0.2
 # Author: Dimitrios Simatos
-# Last updated: 2022-09-05
+# Last updated: 2022-09-08
 #-------------------------------------------------------
 # Description
 #
 # This script is designed to pump a liquid from a single port into the QCM.
+# If sensing proteins, perform two additional steps:
+#  - Saturate the tubes for 1-2 hours with a highly concentrated protein solution.
+#  - Measure consecutive transfer curves for 4 hours, to allow the device to charge and the baseline to stabilize to its maximum value.
+#
+# Input port sequence: 3
 #-------------------------------------------------------
 # Changes
 #
-# Created the script.
+# Added input port sequence and updated the volume of liquid needed.
 #-------------------------------------------------------
 # Important points
 #
@@ -22,6 +27,7 @@
 #-------------------------------------------------------
 # Things to do before running the script
 #
+# If sensing proteins, saturate the tubes with a highly concentrated protein solution.
 # Set time units to minutes.
 # Set filenames.
 # Replace the tubing, if necessary.
@@ -38,15 +44,15 @@
 # Pumping cycles and execution time
 #
 # There is only 1 step, with 90 cycles.
-# There are 90 pumping cycles, each one followed by 7 minutes of measurements.
+# There are 90 pumping cycles, each one followed by 3 minutes of measurements.
 # Execution time: 1 x 90 x 3 = 270 minutes = 4.5 hours
 # All cycles pump DI water from port 3.
 #-------------------------------------------------------
 # Volume of liquid needed
 #
 # Volume of liquid needed per cycle: 1 ml
-# Total volume of liquid needed per script run:
-# 90 x 1 = 90 ml DI water
+# Total volume of liquid needed per script run (volume/step * steps in which the liquid is injected):
+# 1 ml x 90 = 90 ml DI water
 #-------------------------------------------------------
 # Parameters
 #

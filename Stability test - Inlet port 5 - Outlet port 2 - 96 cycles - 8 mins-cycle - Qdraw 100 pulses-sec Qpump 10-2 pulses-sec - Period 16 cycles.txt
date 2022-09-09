@@ -1,9 +1,9 @@
 #-------------------------------------------------------
 # Stability script
 #
-# Version: 1.8
+# Version: 1.9
 # Author: Dimitrios Simatos
-# Last updated: 2022-08-26
+# Last updated: 2022-09-08
 #-------------------------------------------------------
 # Description
 #
@@ -11,10 +11,12 @@
 # The script allows the baseline 2 hours to stabilize and then flushes the flow cell with liquid.
 # The script was made to see if the baseline stability depends on liquid being flushed inside the flow cell
 # (and hence if the liquid's conductivity changes with time if it remains still inside the flow cell).
+#
+# Input port sequence: 5
 #-------------------------------------------------------
 # Changes
 #
-# Removed 1A0R step. Syringe should not fully empty as air is injected.
+# Added input port sequence and updated the volume of liquid needed.
 #-------------------------------------------------------
 # Important points
 #
@@ -50,8 +52,8 @@
 # Volume of liquid needed
 #
 # Volume of liquid needed per step: 1 ml
-# Total volume of liquid needed per script run:
-# 6 x 1 ml = 6 ml saline solution
+# Total volume of liquid needed per script run (volume/cycle * cycles in which the liquid is injected):
+# 1 ml x 6 = 6 ml saline solution
 #-------------------------------------------------------
 # Parameters
 #

@@ -1,9 +1,9 @@
 #-------------------------------------------------------
 # Baseline stabilization script
 #
-# Version: 0.2
+# Version: 0.3
 # Author: Dimitrios Simatos
-# Last updated: 2022-08-26
+# Last updated: 2022-09-08
 #-------------------------------------------------------
 # Description
 #
@@ -11,9 +11,12 @@
 # If sensing proteins, two additional steps should be performed:
 #  - Saturate the tubes for 1-2 hours with a highly concentrated protein solution.
 #  - Measure consecutive transfer curves for at least 4 hours, to allow the device to charge and the baseline to stabilize to its maximum value. This is what this script does.
+#
+# Input port sequence: 3
 #-------------------------------------------------------
 # Changes
 #
+# Added input port sequence and updated the volume of liquid needed.
 #-------------------------------------------------------
 # Important points
 #
@@ -49,8 +52,8 @@
 # Volume of liquid needed
 #
 # Volume of liquid needed per step: 1 ml
-# Total volume of liquid needed per script run:
-# 5 x 1 = 5 ml DI water
+# Total volume of liquid needed per script run (volume/step * steps in which the liquid is injected):
+# 5 ml x 1 = 5 ml DI water
 #-------------------------------------------------------
 # Parameters
 #

@@ -1,17 +1,19 @@
 #-------------------------------------------------------
 # Stability script
 #
-# Version: 1.9
+# Version: 2.0
 # Author: Dimitrios Simatos
-# Last updated: 2022-08-26
+# Last updated: 2022-09-08
 #-------------------------------------------------------
 # Description
 #
 # This script is designed to pump a liquid from a single port into the flow cell.
+#
+# Input port sequence: 3
 #-------------------------------------------------------
 # Changes
 #
-# Added final cycle of flushing the device with fresh liquid.
+# Added input port sequence and updated the volume of liquid needed.
 #-------------------------------------------------------
 # Important points
 #
@@ -46,8 +48,8 @@
 # Volume of liquid needed
 #
 # Volume of liquid needed per cycle: 1 ml
-# Total volume of liquid needed per script run:
-# 1 ml ultrapure water
+# Total volume of liquid needed per script run (volume/cycle * cycles in which the liquid is injected):
+# 1 ml x 1 = 1 ml ultrapure water
 #-------------------------------------------------------
 # Parameters
 #
