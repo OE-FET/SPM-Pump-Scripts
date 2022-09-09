@@ -9,11 +9,12 @@ b.	Cycling scripts: these are used to perform an experiment, usually by sequenti
 c.	Cleaning scripts: these are used to clean the tubings after an experiment.
 
 ## How to write cycling scripts:
-a.	A script is split into an integer number of **steps** depending on the number of liquids that are sequentially pumped into the sample. If water, buffer, and again water are pumped into the sample, then the script consists of three steps.
-b.	A step consists of an integer number of **cycles**. During a cycle, the pump draws liquid from a reservoir and pumps it into the sample. The cycles are identical, except for the following differences.
-c.	There should be only one initialization command `/1ZR` per script. This should be the first command of the first cycle. The next cycles should not have an initialization command.
-d.	The first cycle also should not have a valve port query `/1?6`. It is meaningless, since the pump is being initialized.
-e.	So, the way to write the cycling scripts is:
+-	A script is split into an integer number of **steps** depending on the number of liquids that are sequentially pumped into the sample. If water, buffer, and again water are pumped into the sample, then the script consists of three steps.
+-	A step consists of an integer number of **cycles**. During a cycle, the pump draws liquid from a reservoir and pumps it into the sample. The cycles are identical, except for the following differences.
+-	There should be only one initialization command `/1ZR` per script. This should be the first command of the first cycle. The next cycles should not have an initialization command.
+-	The first cycle also should not have a valve port query `/1?6`. It is meaningless, since the pump is being initialized.
+
+So, the way to write the cycling scripts is:
 -	Write the first cycle.
 -	Copy and paste it, as needed.
 -	Remove the initialization commands from all cycles except the first, and the first valve port query from the first cycle (the /1?6 query that comes after the initialization command).
