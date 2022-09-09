@@ -4,9 +4,9 @@ The scripts are intended to be used with the custom "pump-specific" vi of the Ag
 
 
 ## Types of scripts:
-a.	Priming scripts: these are used to prime the tubings (fill them with liquid) prior to an experiment.
-b.	Cycling scripts: these are used to perform an experiment, usually by sequentially drawing liquids from many different reservoirs and pumping them into the sample.
-c.	Cleaning scripts: these are used to clean the tubings after an experiment.
+**Priming** scripts: these are used to prime the tubings (fill them with liquid) prior to an experiment.
+**Cycling** scripts: these are used to perform an experiment, usually by sequentially drawing liquids from many different reservoirs and pumping them into the sample.
+**Cleaning** scripts: these are used to clean the tubings after an experiment.
 
 ## How to write cycling scripts:
 -	A script is split into an integer number of **steps** depending on the number of liquids that are sequentially pumped into the sample. If water, buffer, and again water are pumped into the sample, then the script consists of three steps.
