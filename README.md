@@ -28,44 +28,46 @@ So, the way to write the cycling scripts is:
 2.	The step resolution is set.
 3.	The (drawing) flow is set.
 4.	The pump moves to the port of the reservoir.
--	NOTE: The pump should move clockwise when moving to a higher port number and vice versa.
--	NOTE: Every port move should be followed by a query and a  valve port query command.
+ -	NOTE: The pump should move clockwise when moving to a higher port number and vice versa.
+ -	NOTE: Every port move should be followed by a query and a  valve port query command.
 5.	The pump draws a volume of liquid into the syringe.
 a.	NOTE: The volume of liquid to be drawn should equal the pumping flow x measurement time. Otherwise, the pump will have no more liquid to pump into the device while the measurements are going on.
 6.	A time delay command follows, to allow the pump enough time to draw the liquid into the syringe.
--	NOTE: The time delay should be at least equal to the volume of liquid to be drawn divided by the drawing flow.
+ -	NOTE: The time delay should be at least equal to the volume of liquid to be drawn divided by the drawing flow.
 7.	The (pumping) flow is set.
--	NOTE: Do **NOT** use a large pumping flow (1500 pulses/sec) with a narrow tubing (ID: 0.86 mm, OD: 1.52 mm (1/16")). It might damage the syringe pump.
+ -	NOTE: Do **NOT** use a large pumping flow (1500 pulses/sec) with a narrow tubing (ID: 0.86 mm, OD: 1.52 mm (1/16")). It might damage the syringe pump.
 8.	The pump moves to the port of the device.
--	NOTE: The pump should move clockwise when moving to a higher port number and vice versa.
--	NOTE: Every port move should be followed by a query and a  valve port query command.
+ -	NOTE: The pump should move clockwise when moving to a higher port number and vice versa.
+ -	NOTE: Every port move should be followed by a query and a  valve port query command.
 9.	The pump pumps the volume of liquid into the device.
--	NOTE: The volume of liquid to be drawn should equal the pumping flow x measurement time. Otherwise, the pump will have no more liquid to pump into the device while the measurements are going on.
+ -	NOTE: The volume of liquid to be drawn should equal the pumping flow x measurement time. Otherwise, the pump will have no more liquid to pump into the device while the measurements are going on.
 10.	There is no time delay command, to allow the pump enough time to pump the liquid into the syringe. The liquid pumping is done during the measurements.
 11.	The device is being measured, while the liquid is pumped in the device.
-ii.	There are various query commands that are executed inbetween the above commands. There are:
+
+There are various query commands that are executed inbetween the above commands. There are:
 1.	The query command `/1Q`.
-a.	Every pump command (except other queries) should be followed by a query command. The status bit shows if the pump is busy only if the input command is a query (see manual).
+ - **NOTE**: Every pump command (except other queries) should be followed by a query command. The status bit shows if the pump is busy only if the input command is a query (see manual).
 2.	The plunger position query command `/1?`.
 3.	The valve port query command `/1?6`.
--	NOTE: Every port move command should be followed by a query and a valve port query command. This is to record that the port switch actually took place. If the valve port is queried later, it will seem like the port switch took place later, which is false: it took place earlier, but there was no valve port query command to record it.
+ -	NOTE: Every port move command should be followed by a query and a valve port query command. This is to record that the port switch actually took place. If the valve port is queried later, it will seem like the port switch took place later, which is false: it took place earlier, but there was no valve port query command to record it.
 4.	Transfer/output curves on the device.
 5.	The order of the query commands I use is:
--	Query command `/1Q`
--	Plunger position query command `/1?`
--	Valve port query command `/1?6`
--	Transfer curve
+ -	Query command `/1Q`
+ -	Plunger position query command `/1?`
+ -	Valve port query command `/1?6`
+ -	Transfer curve
 
 Note that the timing between the plunger position query commands and the valve port query commands is crucial!
--	The valve port query commands and the plunger position query commands should give an accurate impression of how much liquid was drawn from each reservoir and where it was pumped.
--	Every port move command should be followed by a query and a valve port query command. This is to record that the port switch actually took place. If the valve port is queried later, it will seem like the port switch took place later, which is false: it took place earlier, but there was no valve port query command to record it. This may create the impression that the liquid was drawn from the wrong reservoir.
+ -	The valve port query commands and the plunger position query commands should give an accurate impression of how much liquid was drawn from each reservoir and where it was pumped.
+ -	Every port move command should be followed by a query and a valve port query command. This is to record that the port switch actually took place. If the valve port is queried later, it will seem like the port switch took place later, which is false: it took place earlier, but there was no valve port query command to record it. This may create the impression that the liquid was drawn from the wrong reservoir.
 
-7.	The time units of the LabVIEW script should match the time delays between the query commands. If LabVIEW is set to plot the valve port every minute and I have a script that queries the valve port every second, I will end up with multiple data points on the same time, which will not make sense.
-8.	There is a command that changes a part of the filename. This is to mark different conditions to which the sample is subjected (i.e. to denote the change of the “step”). For example, if a WG-OFET has different liquids pumped into it, this command could be used to indicate which measurements belong to which liquid. In this case, the filename change command is inserted at the beginning of each step.
+The time units of the LabVIEW script should match the time delays between the query commands. If LabVIEW is set to plot the valve port every minute and I have a script that queries the valve port every second, I will end up with multiple data points on the same time, which will not make sense.
 
-3.	How to write priming scripts:
--	Priming scripts are similar to cycling scripts but do not contain the device measuring part. The drawing and pumping flows are also much larger.
--	When drawing liquid into the syringe, the position of the plunger depends on the volume of the tubing. The syringe must draw enough liquid to fill the tubing.
+There is a command that changes a part of the filename. This is to mark different conditions to which the sample is subjected (i.e. to denote the change of the “step”). For example, if a WG-OFET has different liquids pumped into it, this command could be used to indicate which measurements belong to which liquid. In this case, the filename change command is inserted at the beginning of each step.
 
-4.	Port settings:
--	Port 1 should always be connected to the waste. During initialization, the pump will empty the contents of the syringe to port 1.
+How to write priming scripts:
+ -	Priming scripts are similar to cycling scripts but do not contain the device measuring part. The drawing and pumping flows are also much larger.
+ -	When drawing liquid into the syringe, the position of the plunger depends on the volume of the tubing. The syringe must draw enough liquid to fill the tubing.
+
+Port settings:
+ -	Port 1 should always be connected to the waste. During initialization, the pump will empty the contents of the syringe to port 1.
