@@ -35,6 +35,7 @@ a.	NOTE: The volume of liquid to be drawn should equal the pumping flow x measur
 6.	A time delay command follows, to allow the pump enough time to draw the liquid into the syringe.
 -	NOTE: The time delay should be at least equal to the volume of liquid to be drawn divided by the drawing flow.
 7.	The (pumping) flow is set.
+-	NOTE: Do **NOT** use a large pumping flow (1500 pulses/sec) with a narrow tubing (ID: 0.86 mm, OD: 1.52 mm (1/16")). It might damage the syringe pump.
 8.	The pump moves to the port of the device.
 -	NOTE: The pump should move clockwise when moving to a higher port number and vice versa.
 -	NOTE: Every port move should be followed by a query and a  valve port query command.
