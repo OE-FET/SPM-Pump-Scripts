@@ -55,7 +55,7 @@ There are various query commands that are executed inbetween the above commands.
  -	Query command `/1Q`
  -	Plunger position query command `/1?`
  -	Valve port query command `/1?6`
- -	Transfer curve
+ -	Transfer curve `transfer [s|d] VgStart VgStop VgStep VdStart VdStop VdStep`
 
 Note that the timing between the plunger position query commands and the valve port query commands is crucial!
  -	The valve port query commands and the plunger position query commands should give an accurate impression of how much liquid was drawn from each reservoir and where it was pumped.
