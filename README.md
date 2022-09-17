@@ -63,7 +63,7 @@ Note that the timing between the plunger position query commands and the valve p
 
 The time units of the LabVIEW script should match the time delays between the query commands. If LabVIEW is set to plot the valve port every minute and I have a script that queries the valve port every second, I will end up with multiple data points on the same time, which will not make sense.
 
-There is a command that changes a part of the filename. This is to mark different conditions to which the sample is subjected (i.e. to denote the change of the “step”). For example, if a WG-OFET has different liquids pumped into it, this command could be used to indicate which measurements belong to which liquid. In this case, the filename change command is inserted at the beginning of each step.
+There is a command that changes a part of the filename. This is to mark different conditions to which the sample is subjected (i.e. to denote the change of the “step”). For example, if a EG-OFET has different liquids pumped into it, this command could be used to indicate which measurements belong to which liquid. In this case, the filename change command is inserted at the beginning of each step.
 
 ### How to write priming scripts:
  -	**Priming** scripts are similar to cycling scripts but do not contain the device measuring part. The drawing and pumping flows are also much larger.
