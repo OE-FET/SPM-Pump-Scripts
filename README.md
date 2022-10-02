@@ -1,5 +1,5 @@
 # SPM-Pump-Scripts
-Scripts for the SPM OEM syringe pump from [Advanced Microfluidics](https://amf.ch/). Each script corresponds to a particular type of experiment.
+Scripts for the [SPM OEM syringe pump](https://amf.ch/product/oem-sequential-microdispenser/) from [Advanced Microfluidics](https://amf.ch/). Each script corresponds to a particular type of experiment.
 The scripts are intended to be used with the custom *pump-specific* VI of the Agilent 415X driver, which integrates the SPM pump with Agilent 4155/4156 SPAs.
 
 
