@@ -1231,7 +1231,7 @@ transfer d 0 -1 -0.1 -1 -1 0
 wait-min 1 #wait 1 minute
 #-------------------------------------------------------
 # Cycle 22: Pumping the liquid of port 4 (10 minutes)
-filename step_2_Abeta42-0,01-uM_initial_
+filename step_2_Ab42-0,01-uM_initial_
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
@@ -1615,7 +1615,7 @@ transfer d 0 -1 -0.1 -1 -1 0
 wait-min 1 #wait 1 minute
 #-------------------------------------------------------
 # Cycle 29: Pumping the liquid of port 4 (10 minutes)
-#filename step_2_Abeta42-0,01-uM_initial_
+#filename step_2_Ab42-0,01-uM_initial_
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
@@ -1999,7 +1999,7 @@ transfer d 0 -1 -0.1 -1 -1 0
 wait-min 1 #wait 1 minute
 #-------------------------------------------------------
 # Cycle 36: Pumping the liquid of port 4 (10 minutes)
-#filename step_2_Abeta42-0,01-uM_initial_
+#filename step_2_Ab42-0,01-uM_initial_
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
@@ -2383,7 +2383,7 @@ transfer d 0 -1 -0.1 -1 -1 0
 wait-min 1 #wait 1 minute
 #-------------------------------------------------------
 # Cycle 43: Pumping the liquid of port 5 (10 minutes)
-filename step_3_Abeta42-0,1-uM_initial_
+filename step_3_Ab42-0,1-uM_initial_
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
@@ -2767,7 +2767,7 @@ transfer d 0 -1 -0.1 -1 -1 0
 wait-min 1 #wait 1 minute
 #-------------------------------------------------------
 # Cycle 50: Pumping the liquid of port 5 (10 minutes)
-#filename step_3_Abeta42-0,1-uM_initial_
+#filename step_3_Ab42-0,1-uM_initial_
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
@@ -3151,7 +3151,7 @@ transfer d 0 -1 -0.1 -1 -1 0
 wait-min 1 #wait 1 minute
 #-------------------------------------------------------
 # Cycle 57: Pumping the liquid of port 5 (10 minutes)
-#filename step_3_Abeta42-0,1-uM_initial_
+#filename step_3_Ab42-0,1-uM_initial_
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
@@ -3535,7 +3535,7 @@ transfer d 0 -1 -0.1 -1 -1 0
 wait-min 1 #wait 1 minute
 #-------------------------------------------------------
 # Cycle 64: Pumping the liquid of port 6 (10 minutes)
-filename step_4_Abeta42-1-uM_initial_
+filename step_4_Ab42-1-uM_initial_
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
@@ -3919,7 +3919,7 @@ transfer d 0 -1 -0.1 -1 -1 0
 wait-min 1 #wait 1 minute
 #-------------------------------------------------------
 # Cycle 71: Pumping the liquid of port 6 (10 minutes)
-#filename step_4_Abeta42-1-uM_initial_
+#filename step_4_Ab42-1-uM_initial_
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
@@ -4303,7 +4303,7 @@ transfer d 0 -1 -0.1 -1 -1 0
 wait-min 1 #wait 1 minute
 #-------------------------------------------------------
 # Cycle 78: Pumping the liquid of port 6 (10 minutes)
-#filename step_4_Abeta42-1-uM_initial_
+#filename step_4_Ab42-1-uM_initial_
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
