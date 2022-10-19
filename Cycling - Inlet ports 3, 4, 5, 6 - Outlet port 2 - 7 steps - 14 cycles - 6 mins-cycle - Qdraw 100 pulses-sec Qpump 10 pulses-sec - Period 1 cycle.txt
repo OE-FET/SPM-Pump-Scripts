@@ -1,9 +1,9 @@
 #-------------------------------------------------------
 # Liquid cycling script
 #
-# Version: 1.7
+# Version: 0.1
 # Author: Dimitrios Simatos
-# Last updated: 2022-09-08
+# Last updated: 2022-10-20
 #-------------------------------------------------------
 # Description
 #
@@ -28,7 +28,7 @@
 # Things to do before running the script
 #
 # If sensing proteins, saturate the tubes with a highly concentrated protein solution.
-# Set time units to seconds.
+# Set time units to minutes.
 # Set filenames.
 # Replace the tubing, if necessary.
 #-------------------------------------------------------
@@ -50,7 +50,7 @@
 # Cycles 3-4 pump Lysozyme 0.05 g/L (100% NaP buffer) from port 4.
 # Cycles 7-8 pump Lysozyme 0.1 g/L (100% NaP buffer) from port 5.
 # Cycles 11-12 pump Lysozyme 0.2 g/L (100% NaP buffer) from port 6.
-# Within a step all four cycles are similar, but the first cycle has the initialization command uncommented and the first report valve command commented.
+# Within a step all two cycles are similar, but the first cycle has the initialization command uncommented and the first report valve command commented.
 #-------------------------------------------------------
 # Volume of liquid needed
 #
