@@ -37,9 +37,9 @@
 # Port 1: Waste
 # Port 2: Device
 # Port 3: NaP buffer
-# Port 4: Lysozyme 0.1 g/L (100% NaP buffer)
-# Port 5: Lysozyme 1 g/L (100% NaP buffer)
-# Port 6: Lysozyme 10 g/L (100% NaP buffer)
+# Port 4: Lysozyme 0.05 g/L (100% NaP buffer)
+# Port 5: Lysozyme 0.1 g/L (100% NaP buffer)
+# Port 6: Lysozyme 0.2 g/L (100% NaP buffer)
 #-------------------------------------------------------
 # Pumping cycles and execution time
 #
@@ -47,9 +47,9 @@
 # Every step consists of 2 cycles: every cycle is a pumping cycle, followed by 6 minutes of measurements.
 # Execution time: 7 x 2 x 6 = 84 minutes = 1.5 hours
 # Cycles 1-2, 5-6, 9-10, 13-14 pump NaP buffer from port 3.
-# Cycles 3-4 pump Lysozyme 0.1 g/L (100% NaP buffer) from port 4.
-# Cycles 7-8 pump Lysozyme 1 g/L (100% NaP buffer) from port 5.
-# Cycles 11-12 pump Lysozyme 10 g/L (100% NaP buffer) from port 6.
+# Cycles 3-4 pump Lysozyme 0.05 g/L (100% NaP buffer) from port 4.
+# Cycles 7-8 pump Lysozyme 0.1 g/L (100% NaP buffer) from port 5.
+# Cycles 11-12 pump Lysozyme 0.2 g/L (100% NaP buffer) from port 6.
 # Within a step all four cycles are similar, but the first cycle has the initialization command uncommented and the first report valve command commented.
 #-------------------------------------------------------
 # Volume of liquid needed
@@ -57,9 +57,9 @@
 # Volume of liquid needed per cycle: 1 ml
 # Total volume of liquid needed per script run (volume/step * steps in which the liquid is injected):
 # 4 ml x 4 = 16 ml NaP buffer
+# 4 ml x 1 = 4 ml Lysozyme 0.05 g/L (100% NaP buffer)
 # 4 ml x 1 = 4 ml Lysozyme 0.1 g/L (100% NaP buffer)
-# 4 ml x 1 = 4 ml Lysozyme 1 g/L (100% NaP buffer)
-# 4 ml x 1 = 4 ml Lysozyme 10 g/L (100% NaP buffer)
+# 4 ml x 1 = 4 ml Lysozyme 0.2 g/L (100% NaP buffer)
 #-------------------------------------------------------
 # Parameters
 #
@@ -373,7 +373,7 @@ transfer d 0 -1 -0.1 -1 -1 0
 wait 15000 #wait 15 seconds
 #-------------------------------------------------------
 # Cycle 3: Pumping the liquid of port 4
-filename step_2_Lys-0,1-gl_initial_
+filename step_2_Lys-0,05-gl_initial_
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
@@ -959,7 +959,7 @@ transfer d 0 -1 -0.1 -1 -1 0
 wait 15000 #wait 15 seconds
 #-------------------------------------------------------
 # Cycle 7: Pumping the liquid of port 5
-filename step_4_Lys-1-gl_initial_
+filename step_4_Lys-0,1-gl_initial_
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
@@ -1545,7 +1545,7 @@ transfer d 0 -1 -0.1 -1 -1 0
 wait 15000 #wait 15 seconds
 #-------------------------------------------------------
 # Cycle 11: Pumping the liquid of port 6
-filename step_6_Lys-10-gl_initial_
+filename step_6_Lys-0,2-gl_initial_
 pump /1Q #query pump
 pump /1? #report absolute plunger position
 pump /1?6 #report valve position
