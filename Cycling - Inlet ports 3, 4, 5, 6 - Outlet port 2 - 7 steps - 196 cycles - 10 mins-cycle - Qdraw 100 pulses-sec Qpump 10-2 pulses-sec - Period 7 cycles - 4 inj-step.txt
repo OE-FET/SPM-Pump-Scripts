@@ -64,7 +64,6 @@
 # Every step consists of 28 cycles: one pumping cycle, 1 hour of measurements (6 cycles), then another pumping cycle and another 1 hour of measurements (6 cycles),
 # then another pumping cycle and another 1 hour of measurements (6 cycles), then another pumping cycle and another 1 hour of measurements (6 cycles).
 # Every 70 minutes (7 cycles) new liquid is flushed inside the flow cell.
-# The syringe takes 30 minutes to empty.
 # Every cycle is 10 minutes long. The total number of cycles is 196.
 # Execution time: 7 x 28 x 10 = 1960 minutes = 32.6 hours
 #-------------------------------------------------------
