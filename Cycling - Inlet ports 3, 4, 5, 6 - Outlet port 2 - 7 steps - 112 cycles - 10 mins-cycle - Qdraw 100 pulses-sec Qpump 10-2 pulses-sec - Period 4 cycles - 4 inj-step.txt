@@ -21,7 +21,7 @@
 # Step resolution: N = 0.01 mm
 # Drawing flow (Qdraw): V = 100 pulses/second (2000 ul/min)
 # Pumping flow (Qpump): V = 2 pulses/second (40 ul/min)
-# NOTE: The first cycle has a pumping flow of 10 pulses/second (200 ul/min). This is done to increase the pressure inside the flow cell, and ensure that there are no air pockets during the initial filling.
+#  - NOTE: The first cycle has a pumping flow of 10 pulses/second (200 ul/min). This is done to increase the pressure inside the flow cell, and ensure that there are no air pockets during the initial filling.
 # Time to empty syringe: Syringe size/Qpump = 25 minutes
 #-------------------------------------------------------
 # Description
