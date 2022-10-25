@@ -21,7 +21,7 @@
 # Step resolution: N = 0.01 mm
 # Drawing flow (Qdraw): V = 100 pulses/second (2000 ul/min)
 # Pumping flow (Qpump): V = 10 pulses/second (200 ul/min)
-# Time to empty syringe: Syringe size/Qpump = 5 minutes
+#  - Time to empty syringe: Syringe size/Qpump = 5 minutes
 #-------------------------------------------------------
 # Description
 #
