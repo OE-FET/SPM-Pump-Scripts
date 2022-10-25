@@ -1,9 +1,26 @@
 #-------------------------------------------------------
 # QCM vapor pumping script
 #
-# Version: 0.2
+# Version: 0.3
 # Author: Dimitrios Simatos
-# Last updated: 2022-09-08
+# Last updated: 2022-10-25
+#-------------------------------------------------------
+# Parameters
+#
+# Input port sequence: 3
+# Outlet port sequence: 2
+# Number of steps (step: an integer number of cycles during which a specific liquid is injected): 1
+# Number of cycles: 90
+# Cycles per step: 90
+# Cycle time: 3 minutes
+# Period (number of cycles between pumping cycles - even of the same liquid): 1
+# Liquid injections per step (cycles per step/period): 90
+# Duration of script: 4.5 hours
+#
+# Syringe size: 1 ml
+# Step resolution: N = 0.01 mm
+# Drawing flow (Qdraw): V = 300 pulses/second (6000 ul/min)
+# Pumping flow (Qpump): V = 300 pulses/second (6000 ul/min)
 #-------------------------------------------------------
 # Description
 #
@@ -11,12 +28,10 @@
 # If sensing proteins, perform two additional steps:
 #  - Saturate the tubes for 1-2 hours with a highly concentrated protein solution.
 #  - Measure consecutive transfer curves for 4 hours, to allow the device to charge and the baseline to stabilize to its maximum value.
-#
-# Input port sequence: 3
 #-------------------------------------------------------
 # Changes
 #
-# Added input port sequence and updated the volume of liquid needed.
+# Updated the Parameters field.
 #-------------------------------------------------------
 # Important points
 #
@@ -53,13 +68,6 @@
 # Volume of liquid needed per cycle: 1 ml
 # Total volume of liquid needed per script run (volume/step * steps in which the liquid is injected):
 # 1 ml x 90 = 90 ml DI water
-#-------------------------------------------------------
-# Parameters
-#
-# Syringe size: 1 ml
-# Step resolution: N = 0.01 mm
-# Drawing flow: V = 300 pulses/second (6000 ul/min)
-# Pumping flow: V = 300 pulses/second (6000 ul/min)
 #-------------------------------------------------------
 # Pump initialization
 pump /1T #hard stop pump

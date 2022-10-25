@@ -1,9 +1,28 @@
 #-------------------------------------------------------
 # Liquid cycling script
 #
-# Version: 1.7
+# Version: 1.8
 # Author: Dimitrios Simatos
-# Last updated: 2022-09-08
+# Last updated: 2022-10-25
+#-------------------------------------------------------
+# Parameters
+#
+# Input port sequence: 3, 4, 3, 5, 3, 6, 3
+# Outlet port sequence: 2
+# Number of steps (step: an integer number of cycles during which a specific liquid is injected): 7
+# Number of cycles: 112
+# Cycles per step: 16
+# Cycle time: 8 minutes
+# Period (number of cycles between pumping cycles - even of the same liquid): 16
+# Liquid injections per step (cycles per step/period): 1
+# Duration of script: 14.9 hours
+#
+# Syringe size: 1 ml
+# Step resolution: N = 0.01 mm
+# Drawing flow (Qdraw): V = 100 pulses/second (2000 ul/min)
+# Pumping flow (Qpump): V = 2 pulses/second (40 ul/min)
+# NOTE: The first cycle has a pumping flow of 10 pulses/second (200 ul/min). This is done to increase the pressure inside the flow cell, and ensure that there are no air pockets during the initial filling.
+# Time to empty syringe: Syringe size/Qpump = 25 minutes
 #-------------------------------------------------------
 # Description
 #
@@ -11,12 +30,10 @@
 # If sensing proteins, perform two additional steps:
 #  - Saturate the tubes for 1-2 hours with a highly concentrated protein solution.
 #  - Measure consecutive transfer curves for 4 hours, to allow the device to charge and the baseline to stabilize to its maximum value.
-#
-# Input port sequence: 3, 4, 3, 5, 3, 6, 3
 #-------------------------------------------------------
 # Changes
 #
-# Added input port sequence and updated the volume of liquid needed.
+# Updated the Parameters field.
 #-------------------------------------------------------
 # Important points
 #
@@ -58,14 +75,6 @@
 # 1 ml x 1 = 1 ml phosphate buffer (pH=2.04 - 50 mM)
 # 1 ml x 1 = 1 ml phosphate buffer (pH=3.04 - 50 mM)
 # 1 ml x 1 = 1 ml phosphate buffer (pH=4.07 - 50 mM)
-#-------------------------------------------------------
-# Parameters
-#
-# Syringe size: 1 ml
-# Step resolution: N = 0.01 mm
-# Drawing flow: V = 100 pulses/second (2000 ul/min)
-# Pumping flow: V = 2 pulses/second (40 ul/min)
-# NOTE: The first cycle has a pumping flow of 10 pulses/second (200 ul/min). This is done to increase the pressure inside the flow cell, and ensure that there are no air pockets during the initial filling.
 #-------------------------------------------------------
 # SPA settings
 itime l 0.04

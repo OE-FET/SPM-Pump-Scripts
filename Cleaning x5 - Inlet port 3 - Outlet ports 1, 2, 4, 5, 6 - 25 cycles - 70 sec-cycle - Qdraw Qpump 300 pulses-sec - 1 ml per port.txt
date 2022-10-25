@@ -1,20 +1,34 @@
 #-------------------------------------------------------
 # SPM pump cleaning script x5
 #
-# Version: 0.2
+# Version: 0.3
 # Author: Dimitrios Simatos
-# Last updated: 2022-09-08
+# Last updated: 2022-10-25
+#-------------------------------------------------------
+# Parameters
+#
+# Input port sequence: 3
+# Outlet port sequence: 1, 2, 4, 5, 6
+# Number of steps (step: an integer number of cycles during which a specific liquid is injected): 1
+# Number of cycles: 25
+# Cycles per step: 25
+# Cycle time: 70 seconds
+# Period (number of cycles between pumping cycles - even of the same liquid): 1
+# Liquid injections per step (cycles per step/period): 25
+# Duration of script: 30 minutes
+#
+# Syringe size: 1 ml
+# Step resolution: N = 0.01 mm
+# Drawing flow (Qdraw): V = 300 pulses/second (6000 ul/min)
+# Pumping flow (Qpump): V = 300 pulses/second (6000 ul/min)
 #-------------------------------------------------------
 # Description
 #
 # This script is designed to run the cleaning sequence of the SPM OEM pump.
-# This script needs to be run 4 times!
-#
-# Input port sequence: 3
 #-------------------------------------------------------
 # Changes
 #
-# Added input port sequence and updated the volume of liquid needed.
+# Updated the Parameters field.
 #-------------------------------------------------------
 # Important points
 #
@@ -85,7 +99,7 @@
 # Pumping cycles and execution time
 #
 # Execution time for a single cycle: 7 x 10 sec = 70 seconds
-# Total execution time: 25 x 70 = 1750 seconds
+# Total execution time: 25 x 70 = 1750 seconds = 30 minutes
 # Since the script has to run 4 times, the cleaning lasts for: 4 x 1750 = 7000 seconds = 116.67 minutes = 1.94 hours
 # Air must be the last to be pumped through the valve, to remove all liquids.
 # There are 25 pumping cycles. Each one draws a different liquid through port 3 and pumps it sequentially through ports 1,2,4,5,6.

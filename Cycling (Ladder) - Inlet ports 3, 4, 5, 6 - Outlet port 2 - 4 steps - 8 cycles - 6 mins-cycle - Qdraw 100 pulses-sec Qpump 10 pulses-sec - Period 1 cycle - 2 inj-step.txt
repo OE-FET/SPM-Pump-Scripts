@@ -1,9 +1,27 @@
 #-------------------------------------------------------
-# Liquid cycling script
+# Ladder cycling script
 #
-# Version: 0.1
+# Version: 0.2
 # Author: Dimitrios Simatos
-# Last updated: 2022-10-20
+# Last updated: 2022-10-25
+#-------------------------------------------------------
+# Parameters
+#
+# Inlet port sequence: 3, 4, 5, 6
+# Outlet port sequence: 2
+# Number of steps (step: an integer number of cycles during which a specific liquid is injected): 4
+# Number of cycles: 8
+# Cycles per step: 2
+# Cycle time: 6 minutes
+# Period (number of cycles between pumping cycles - even of the same liquid): 1 (every cycle is an injection cycle)
+# Liquid injections per step (cycles per step/period): 2
+# Duration of script: 48 minutes
+#
+# Syringe size: 1 ml
+# Step resolution: N = 0.01 mm
+# Drawing flow (Qdraw): V = 100 pulses/second (2000 ul/min)
+# Pumping flow (Qpump): V = 10 pulses/second (200 ul/min)
+# Time to empty syringe: Syringe size/Qpump = 5 minutes
 #-------------------------------------------------------
 # Description
 #
@@ -11,12 +29,10 @@
 # If sensing proteins, perform two additional steps:
 #  - Saturate the tubes for 1-2 hours with a highly concentrated protein solution.
 #  - Measure consecutive transfer curves for 4 hours, to allow the device to charge and the baseline to stabilize to its maximum value.
-#
-# Input port sequence: 3, 4, 5, 6
 #-------------------------------------------------------
 # Changes
 #
-# Added input port sequence and updated the volume of liquid needed.
+# Updated the Parameters field.
 #-------------------------------------------------------
 # Important points
 #
@@ -60,13 +76,6 @@
 # 4 ml x 1 = 4 ml Lysozyme 0.05 g/L (100% NaP buffer)
 # 4 ml x 1 = 4 ml Lysozyme 0.1 g/L (100% NaP buffer)
 # 4 ml x 1 = 4 ml Lysozyme 0.2 g/L (100% NaP buffer)
-#-------------------------------------------------------
-# Parameters
-#
-# Syringe size: 1 ml
-# Step resolution: N = 0.01 mm
-# Drawing flow: V = 100 pulses/second (2000 ul/min)
-# Pumping flow: V = 10 pulses/second (40 ul/min)
 #-------------------------------------------------------
 # SPA settings
 itime l 0.04
