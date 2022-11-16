@@ -1,9 +1,10 @@
 #-------------------------------------------------------
 # Liquid cycling script
 #
-# Version: 0.2
+# Version: 0.3
 # Author: Dimitrios Simatos
-# Last updated: 2022-10-25
+# Last updated: 2022-11-16
+# Changes: Updated the duration of script with the measured duration of script.
 #-------------------------------------------------------
 # Parameters
 #
@@ -15,7 +16,7 @@
 # Cycle time: 8 minutes
 # Period (number of cycles between pumping cycles - even of the same liquid): 4
 # Liquid injections per step (cycles per step/period): 4
-# Duration of script: 14.9 hours
+# Duration of script: Theoretical: 15 hours, Measured: 
 #
 # Syringe size: 1 ml
 # Step resolution: N = 0.01 mm
@@ -30,10 +31,6 @@
 # If sensing proteins, perform two additional steps:
 #  - Saturate the tubes for 1-2 hours with a highly concentrated protein solution.
 #  - Measure consecutive transfer curves for 4 hours, to allow the device to charge and the baseline to stabilize to its maximum value.
-#-------------------------------------------------------
-# Changes
-#
-# Updated the Parameters field.
 #-------------------------------------------------------
 # Important points
 #
@@ -65,7 +62,10 @@
 # then another pumping cycle and another 30 minutes of measurements (3 cycles), then another pumping cycle and another 30 minutes of measurements (3 cycles).
 # Every 30 minutes (3 cycles) new liquid is flushed inside the flow cell.
 # Every cycle is 8 minutes long. The total number of cycles is 112.
-# Execution time: 7 x 16 x 10 = 896 minutes = 14.9 hours
+#
+# Execution time for a single cycle: 8 minutes
+# Total (theoretical) execution time: 1 (initialization) + 7 x 16 x 8 = 897 minutes = 15 hours
+# Total (measured) execution time: 
 #-------------------------------------------------------
 # Volume of liquid needed
 #

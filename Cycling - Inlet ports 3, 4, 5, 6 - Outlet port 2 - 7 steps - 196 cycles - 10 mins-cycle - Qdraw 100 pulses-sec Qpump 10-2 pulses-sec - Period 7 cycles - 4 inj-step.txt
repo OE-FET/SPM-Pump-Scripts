@@ -1,9 +1,10 @@
 #-------------------------------------------------------
 # Liquid cycling script
 #
-# Version: 0.3
+# Version: 0.4
 # Author: Dimitrios Simatos
-# Last updated: 2022-10-25
+# Last updated: 2022-11-16
+# Changes: Updated the duration of script with the measured duration of script.
 #-------------------------------------------------------
 # Parameters
 #
@@ -15,7 +16,7 @@
 # Cycle time: 10 minutes
 # Period (number of cycles between pumping cycles - even of the same liquid): 7
 # Liquid injections per step (cycles per step/period): 4
-# Duration of script: 32.6 hours
+# Duration of script: Theoretical: 32.7 hours, Measured: 40 hours
 #
 # Syringe size: 1 ml
 # Step resolution: N = 0.01 mm
@@ -30,10 +31,6 @@
 # If sensing proteins, perform two additional steps:
 #  - Saturate the tubes for 1-2 hours with a highly concentrated protein solution.
 #  - Measure consecutive transfer curves for 4 hours, to allow the device to charge and the baseline to stabilize to its maximum value.
-#-------------------------------------------------------
-# Changes
-#
-# Updated the Parameters field.
 #-------------------------------------------------------
 # Important points
 #
@@ -63,9 +60,18 @@
 # There are 7 steps in total.
 # Every step consists of 28 cycles: one pumping cycle, 1 hour of measurements (6 cycles), then another pumping cycle and another 1 hour of measurements (6 cycles),
 # then another pumping cycle and another 1 hour of measurements (6 cycles), then another pumping cycle and another 1 hour of measurements (6 cycles).
+#
 # Every 70 minutes (7 cycles) new liquid is flushed inside the flow cell.
 # Every cycle is 10 minutes long. The total number of cycles is 196.
-# Execution time: 7 x 28 x 10 = 1960 minutes = 32.6 hours
+#
+# Cycles 1-28, 57-84, 113-140, 169-196 pump Ultrapure water from port 3.
+# Cycles 29-56 pump Lysozyme 0.1 g/L (100% Ultrapure water) from port 4.
+# Cycles 85-112 pump Lysozyme 1 g/L (100% Ultrapure water) from port 5.
+# Cycles 141-168 pump Lysozyme 10 g/L (100% Ultrapure water) from port 6.
+#
+# Execution time for a single cycle: 10 minutes
+# Total (theoretical) execution time: 1 (initialization) + 7 x 28 x 10 = 1961 minutes = 32.7 hours
+# Total (measured) execution time: 40 hours
 #-------------------------------------------------------
 # Volume of liquid needed
 #

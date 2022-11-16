@@ -1,9 +1,10 @@
 #-------------------------------------------------------
 # QCM vapor pumping script
 #
-# Version: 0.3
+# Version: 0.4
 # Author: Dimitrios Simatos
-# Last updated: 2022-10-25
+# Last updated: 2022-11-16
+# Changes: Updated the duration of script with the measured duration of script.
 #-------------------------------------------------------
 # Parameters
 #
@@ -15,7 +16,7 @@
 # Cycle time: 3 minutes
 # Period (number of cycles between pumping cycles - even of the same liquid): 1
 # Liquid injections per step (cycles per step/period): 90
-# Duration of script: 4.5 hours
+# Duration of script: Theoretical: 4.5 hours, Measured: 
 #
 # Syringe size: 1 ml
 # Step resolution: N = 0.01 mm
@@ -28,10 +29,6 @@
 # If sensing proteins, perform two additional steps:
 #  - Saturate the tubes for 1-2 hours with a highly concentrated protein solution.
 #  - Measure consecutive transfer curves for 4 hours, to allow the device to charge and the baseline to stabilize to its maximum value.
-#-------------------------------------------------------
-# Changes
-#
-# Updated the Parameters field.
 #-------------------------------------------------------
 # Important points
 #
@@ -60,8 +57,11 @@
 #
 # There is only 1 step, with 90 cycles.
 # There are 90 pumping cycles, each one followed by 3 minutes of measurements.
-# Execution time: 1 x 90 x 3 = 270 minutes = 4.5 hours
 # All cycles pump DI water from port 3.
+#
+# Execution time for a single cycle: 6 minutes
+# Total (theoretical) execution time: 1 (initialization) + 1 x 90 x 3 = 271 minutes = 4.5 hours
+# Total (measured) execution time:
 #-------------------------------------------------------
 # Volume of liquid needed
 #

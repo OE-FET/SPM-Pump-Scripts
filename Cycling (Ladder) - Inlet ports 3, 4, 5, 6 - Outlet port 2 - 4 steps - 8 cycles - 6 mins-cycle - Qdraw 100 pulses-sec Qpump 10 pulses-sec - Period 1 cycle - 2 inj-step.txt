@@ -1,9 +1,10 @@
 #-------------------------------------------------------
 # Ladder cycling script
 #
-# Version: 0.2
+# Version: 0.3
 # Author: Dimitrios Simatos
-# Last updated: 2022-10-25
+# Last updated: 2022-11-16
+# Changes: Updated the duration of script with the measured duration of script.
 #-------------------------------------------------------
 # Parameters
 #
@@ -15,7 +16,7 @@
 # Cycle time: 6 minutes
 # Period (number of cycles between pumping cycles - even of the same liquid): 1 (every cycle is an injection cycle)
 # Liquid injections per step (cycles per step/period): 2
-# Duration of script: 48 minutes
+# Duration of script: Theoretical: 49 minutes, Measured: 62 minutes
 #
 # Syringe size: 1 ml
 # Step resolution: N = 0.01 mm
@@ -29,10 +30,6 @@
 # If sensing proteins, perform two additional steps:
 #  - Saturate the tubes for 1-2 hours with a highly concentrated protein solution.
 #  - Measure consecutive transfer curves for 4 hours, to allow the device to charge and the baseline to stabilize to its maximum value.
-#-------------------------------------------------------
-# Changes
-#
-# Updated the Parameters field.
 #-------------------------------------------------------
 # Important points
 #
@@ -61,12 +58,15 @@
 #
 # There are 4 steps in total.
 # Every step consists of 2 cycles: every cycle is a pumping cycle, followed by 6 minutes of measurements.
-# Execution time: 4 x 2 x 6 = 48 minutes
+#
 # Cycles 1-2 pump NaP buffer from port 3.
 # Cycles 3-4 pump Lysozyme 0.05 g/L (100% NaP buffer) from port 4.
 # Cycles 5-6 pump Lysozyme 0.1 g/L (100% NaP buffer) from port 5.
 # Cycles 7-8 pump Lysozyme 0.2 g/L (100% NaP buffer) from port 6.
-# Within a step all two cycles are similar, but the first cycle has the initialization command uncommented and the first report valve command commented.
+# Within a step all cycles are similar, but the first cycle has the first report valve command commented.
+#
+# Total (theoretical) execution time: 1 (initialization) + 4 x 2 x 6 = 49 minutes
+# Total (measured) execution time: 62 minutes
 #-------------------------------------------------------
 # Volume of liquid needed
 #

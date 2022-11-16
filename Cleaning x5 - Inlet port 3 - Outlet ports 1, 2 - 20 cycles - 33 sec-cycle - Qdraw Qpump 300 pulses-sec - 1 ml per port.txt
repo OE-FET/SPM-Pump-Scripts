@@ -1,9 +1,10 @@
 #-------------------------------------------------------
 # SPM pump cleaning script x5, Ports 1,2
 #
-# Version: 0.3
+# Version: 0.4
 # Author: Dimitrios Simatos
-# Last updated: 2022-10-25
+# Last updated: 2022-11-16
+# Changes: Updated the duration of script with the measured duration of script.
 #-------------------------------------------------------
 # Parameters
 #
@@ -12,10 +13,10 @@
 # Number of steps (step: an integer number of cycles during which a specific liquid is injected): 1
 # Number of cycles: 20
 # Cycles per step: 20
-# Cycle time: 70 seconds
+# Cycle time: Theoretical: 33 seconds
 # Period (number of cycles between pumping cycles - even of the same liquid): 1
 # Liquid injections per step (cycles per step/period): 20
-# Duration of script: 24 minutes
+# Duration of script: Theoretical: 12 minutes, Measured: 26 minutes
 #
 # Syringe size: 1 ml
 # Step resolution: N = 0.01 mm
@@ -26,10 +27,6 @@
 #
 # This script is designed to run the cleaning sequence of the SPM OEM pump.
 # It ONLY cleans ports 1 and 2.
-#-------------------------------------------------------
-# Changes
-#
-# Updated the Parameters field.
 #-------------------------------------------------------
 # Important points
 #
@@ -96,9 +93,11 @@
 #-------------------------------------------------------
 # Pumping cycles and execution time
 #
-# Execution time for a single cycle: 7 x 10 sec = 70 seconds
-# Total execution time: 20 x 70 = 1400 seconds = 24 minutes
-# Since the script has to run 4 times, the cleaning lasts for: 4 x 1400 = 5600 seconds = 93.33 minutes = 1.56 hours
+# Execution time for a single cycle: 33 seconds
+# Total (theoretical) execution time: 60 (initialization) + 20 x 33 = 720 seconds = 12 minutes
+# Total (measured) execution time: 26 minutes
+# Since the script has to run 4 times, the entire cleaning process lasts for: 4 x 26 = 104 minutes = 1.73 hours
+#
 # Air must be the last to be pumped through the valve, to remove all liquids.
 # There are 25 pumping cycles. Each one draws a different liquid through port 3 and pumps it sequentially through ports 1,2.
 # During the sequential pumping, each port receives 1 ml of liquid (100% of the total syringe volume = 3000 "plunger units")
