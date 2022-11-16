@@ -4,13 +4,11 @@
 # Version: 1.7
 # Author: Dimitrios Simatos
 # Last updated: 2020-09-03
+# Changes: 
 #-------------------------------------------------------
 # Description
 #
 # This script is designed to measure in static mode, when the flow cell is filled manually.
-#-------------------------------------------------------
-# Changes
-#
 #-------------------------------------------------------
 # Important points
 #
