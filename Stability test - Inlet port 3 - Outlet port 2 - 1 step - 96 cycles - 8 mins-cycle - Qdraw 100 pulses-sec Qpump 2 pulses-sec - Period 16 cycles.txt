@@ -16,7 +16,7 @@
 # Cycle time: 8 minutes
 # Period (number of cycles between pumping cycles - even of the same liquid): 16
 # Liquid injections per step (cycles per step/period): 6
-# Duration of script: Theoretical: 12.8 hours, Measured: 16 hours and 40 minutes
+# Duration of script: Theoretical: 12.8 hours, Measured: 15 hours and 25 minutes
 #
 # Syringe size: 1 ml
 # Step resolution: N = 0.01 mm
@@ -61,7 +61,7 @@
 #
 # Execution time for a single cycle: 8 minutes
 # Total (theoretical) execution time: 1 (initialization) + 96 x 8 = 769 minutes = 12.8 hours
-# Total (measured) execution time: 16 hours and 40 minutes
+# Total (measured) execution time: 15 hours and 25 minutes
 #-------------------------------------------------------
 # Volume of liquid needed
 #
