@@ -65,7 +65,7 @@ The time units of the LabVIEW script should match the time delays between the qu
 
 There is a command that changes a part of the filename. This is to mark different conditions to which the sample is subjected (i.e. to denote the change of the “step”). For example, if an EG-OFET has different liquids pumped into it, this command could be used to indicate which measurements belong to which liquid. In this case, the filename change command is inserted at the beginning of each step.
 
-### How to write priming scripts:
+## How to write priming scripts:
  -	**Priming** scripts are similar to cycling scripts but do not contain the device measuring part. The drawing and pumping flows are also much larger.
  -	When drawing liquid into the syringe, the position of the plunger depends on the volume of the tubing. The syringe must draw enough liquid to fill the tubing.
 
